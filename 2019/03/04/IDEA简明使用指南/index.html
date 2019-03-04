@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>IDEA简明使用指南 | 写代码的木公</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="工欲善其事，必先利其器。在Java开发中挑选一款好的Ide环境能大大提升我们的开发效率,IntelliJ IDEA正是一个不二选择。本指南中会介绍怎么对idea进行配置、使用idea进行debug和经常使用的快捷键，最后会推荐几个牛逼的idea插件，大大提升开发体验和效率。  PS:本文部分内容来自网络，根据自己的习惯进行了编辑整理，方便自己查阅记忆。   1. 搭建idea的开发环境在使用一个">
+<meta name="keywords" content="工具,IDEA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IDEA简明使用指南">
+<meta property="og:url" content="http://yoursite.com/2019/03/04/IDEA简明使用指南/index.html">
+<meta property="og:site_name" content="写代码的木公">
+<meta property="og:description" content="工欲善其事，必先利其器。在Java开发中挑选一款好的Ide环境能大大提升我们的开发效率,IntelliJ IDEA正是一个不二选择。本指南中会介绍怎么对idea进行配置、使用idea进行debug和经常使用的快捷键，最后会推荐几个牛逼的idea插件，大大提升开发体验和效率。  PS:本文部分内容来自网络，根据自己的习惯进行了编辑整理，方便自己查阅记忆。   1. 搭建idea的开发环境在使用一个">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640.jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640.png">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/捕获.PNG">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/捕获%20[1].PNG">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/捕获%20[2].PNG">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[1].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[2].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[3].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[4].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[5].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[6].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[7].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[8].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[9].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[10].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[11].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[12].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[1].png">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[13].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[14].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[15].jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/idea/640%20[2].png">
+<meta property="og:updated_time" content="2019-03-04T15:35:23.464Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IDEA简明使用指南">
+<meta name="twitter:description" content="工欲善其事，必先利其器。在Java开发中挑选一款好的Ide环境能大大提升我们的开发效率,IntelliJ IDEA正是一个不二选择。本指南中会介绍怎么对idea进行配置、使用idea进行debug和经常使用的快捷键，最后会推荐几个牛逼的idea插件，大大提升开发体验和效率。  PS:本文部分内容来自网络，根据自己的习惯进行了编辑整理，方便自己查阅记忆。   1. 搭建idea的开发环境在使用一个">
+<meta name="twitter:image" content="http://yoursite.com/images/2019/02/idea/640.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="写代码的木公" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--<link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">-->
+    <!--<script src="/libs/bootstrap/js/bootstrap.js"></script>-->
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">写代码的木公</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">陈松夏</h2>
+            <h3 id="title">Java开发工程师</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+            <a id="follow" target="_blank" href="https://github.com/chensongxia/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                4
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                6
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-IDEA简明使用指南" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            IDEA简明使用指南
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        <!---->
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/03/04/IDEA简明使用指南/">
+            <time datetime="2019-03-04T14:41:47.000Z" itemprop="datePublished">2019-03-04</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+        <i class="fa fa-user"></i>
+        陈松夏
+    </div>
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/工具/">工具</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/IDEA/">IDEA</a>, <a class="tag-link" href="/tags/工具/">工具</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <hr>
+<p>工欲善其事，必先利其器。在Java开发中挑选一款好的Ide环境能大大提升我们的开发效率,IntelliJ IDEA正是一个不二选择。本指南中会介绍怎么对idea进行配置、使用idea进行debug和经常使用的快捷键，最后会推荐几个牛逼的idea插件，大大提升开发体验和效率。</p>
+<blockquote>
+<p>PS:本文部分内容来自网络，根据自己的习惯进行了编辑整理，方便自己查阅记忆。</p>
+</blockquote>
+<hr>
+<h3 id="1-搭建idea的开发环境"><a href="#1-搭建idea的开发环境" class="headerlink" title="1. 搭建idea的开发环境"></a>1. 搭建idea的开发环境</h3><p>在使用一个ide前，我们必须要对其进行配置以符合我们的开发需要。这个章节会介绍当我们安装好IntelliJ IDEA之后怎么对其进行必要的配置。</p>
+<p>首先我们要去<a href="https://www.jetbrains.com/idea/download/#section=windows" target="_blank" rel="noopener">官网</a>下载idea的安装包，<strong>记住一定要下载Ultimate收费版</strong>，因为收费版本比Community的免费版本多了很多功能，这些功能可以大大提升我们的开发效率。下载完成后需要自己安装激活。（关于怎么激活自己去百度下）</p>
+<a id="more"></a>
+<h5 id="1-1-样式主题配置"><a href="#1-1-样式主题配置" class="headerlink" title="1.1 样式主题配置"></a>1.1 样式主题配置</h5><p>第一次安装完IDEA之后，第一步往往需要设置一个合适自己的样式主题，这部分配置主要包括：</p>
+<ul>
+<li>整体的主题配置；</li>
+<li>菜单栏字体大小样式配置；</li>
+<li>代码区字体大小样式配置；</li>
+<li>输出控制台字体大小样式配置。</li>
+</ul>
+<ol>
+<li>主题和菜单栏配置<br><img src="/images/2019/02/idea/640.jpg" alt=""></li>
+</ol>
+<p>如上图，File&gt;&gt;Settings&gt;&gt;Appearance&amp;Behavior&gt;&gt;Appearance，进入主题设置页面。选择我们喜欢的主题，这边我选择了我喜欢的Darcual主题，这个可以根据个人爱好自己选择。然后图中”override default fonts by”这栏，我一般会选择”微软雅黑”，字体大小自己选择。注意，这个配置只会影响最主题和最上面菜单栏的显示。</p>
+<ol start="2">
+<li>代码区字体大小样式配置<br><img src="/images/2019/02/idea/640.png" alt=""></li>
+</ol>
+<p>如上图，进入Color Scheme Font标签页进行代码编辑区的字体样式设置。</p>
+<ol start="3">
+<li>输出控制台字体大小样式配置<br><img src="/images/2019/02/idea/捕获.PNG" alt=""></li>
+</ol>
+<h4 id="1-2-设置编码字符集"><a href="#1-2-设置编码字符集" class="headerlink" title="1.2 设置编码字符集"></a>1.2 设置编码字符集</h4><p><img src="/images/2019/02/idea/捕获 [1].PNG" alt=""></p>
+<h4 id="1-3-配置JDK"><a href="#1-3-配置JDK" class="headerlink" title="1.3 配置JDK"></a>1.3 配置JDK</h4><ol>
+<li><strong>项目编译的JDK版本</strong><br><img src="/images/2019/02/idea/捕获 [2].PNG" alt=""></li>
+</ol>
+<p>如上图，上面的设置是配置编译出来的class文件的jdk版本是哪个，这边我们选择的是1.8版本。想要查看class文件的jdk版本，我们可以将class文件用编辑软件打开，以16进制的形式查看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cafe babe 0000 0034 0026 0a00 0600 1809</span><br><span class="line">0019 001a 0800 1b0a 001c 001d 0700 1e07</span><br><span class="line">001f 0100 063c 696e 6974 3e01 0003 2829</span><br><span class="line">5601 0004 436f 6465 0100 0f4c 696e 654e</span><br><span class="line">756d 6265 7254 6162 6c65 0100 124c 6f63</span><br></pre></td></tr></table></figure>
+<p>“cafe babe”是每个class文件固定的，后面的”0000 0034”就标明了class文件的jdk版本。其中0034代表的就是jdk1.8版本。下面是对照表：</p>
+<table>
+<thead>
+<tr>
+<th>版本号</th>
+<th>JDK版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2E</td>
+<td>jdk1.2</td>
+</tr>
+<tr>
+<td>2F</td>
+<td>jdk1.3</td>
+</tr>
+<tr>
+<td>30</td>
+<td>jdk1.4</td>
+</tr>
+<tr>
+<td>31</td>
+<td>jdk1.5</td>
+</tr>
+<tr>
+<td>32</td>
+<td>jdk1.6</td>
+</tr>
+<tr>
+<td>33</td>
+<td>jdk1.7</td>
+</tr>
+<tr>
+<td>34</td>
+<td>jdk1.8</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li><strong>配置Project的Jdk版本</strong><br><img src="/images/2019/02/idea/640 [1].jpg" alt=""></li>
+</ol>
+<p>项目的SDK默认会被项目中的每个module使用，当然我们也可以为每个module配置专有的SDK类型和版本。</p>
+<ol start="3">
+<li><strong>配置每个module依赖的JDK版本</strong><br><img src="/images/2019/02/idea/640 [2].jpg" alt=""><br><img src="/images/2019/02/idea/640 [3].jpg" alt=""></li>
+</ol>
+<p>每个module会默认使用project配置的jdk版本，当然我们也可以自己指定。</p>
+<ol start="4">
+<li><strong>检查平台的JDK版本（也就是你电脑上安装的JDK）</strong><br><img src="/images/2019/02/idea/640 [4].jpg" alt=""></li>
+</ol>
+<p>我们在给project创建jdk的时候其实用的就是这个jdk。</p>
+<h4 id="1-4-键盘习惯配置"><a href="#1-4-键盘习惯配置" class="headerlink" title="1.4 键盘习惯配置"></a>1.4 键盘习惯配置</h4><p>如果你之前用惯的是Eclipse，可能用不惯IDEA的快捷键.没事，idea可以将快捷键设置为eclipse模式。你之前用的是windows电脑，现在转为mac了，idea也提供了相应的转换设置。<br><img src="/images/2019/02/idea/640 [5].jpg" alt=""></p>
+<p>通过keyman标签还可以设置快捷键，但是个人不建议改变IDEA默认的快捷键设置。</p>
+<h4 id="1-5-配置资源分类"><a href="#1-5-配置资源分类" class="headerlink" title="1.5 配置资源分类"></a>1.5 配置资源分类</h4><p><img src="/images/2019/02/idea/640 [6].jpg" alt=""></p>
+<h4 id="1-6-构建工具配置"><a href="#1-6-构建工具配置" class="headerlink" title="1.6 构建工具配置"></a>1.6 构建工具配置</h4><p>常用的构建工具有Maven和Gradle。我们可以选其一。<br><img src="/images/2019/02/idea/640 [7].jpg" alt=""></p>
+<h4 id="1-7-配置Tomcat"><a href="#1-7-配置Tomcat" class="headerlink" title="1.7 配置Tomcat"></a>1.7 配置Tomcat</h4><p><img src="/images/2019/02/idea/640 [8].jpg" alt=""></p>
+<h4 id="1-8-一次只能打开一个文件（关闭Tab）"><a href="#1-8-一次只能打开一个文件（关闭Tab）" class="headerlink" title="1.8 一次只能打开一个文件（关闭Tab）"></a>1.8 一次只能打开一个文件（关闭Tab）</h4><p><img src="/images/2019/02/idea/640 [9].jpg" alt=""></p>
+<h4 id="1-9-自动编译配置"><a href="#1-9-自动编译配置" class="headerlink" title="1.9 自动编译配置"></a>1.9 自动编译配置</h4><p>具体步骤：顶部工具栏  File -&gt;Other Settings -&gt; Default Settings -&gt; Auto Import<br>说明：开启自动编译之后，结合Ctrl+Shift+F9 会有热更新效果。<br><img src="/images/2019/02/idea/640 [10].jpg" alt=""></p>
+<p>具体步骤： 敲击 Ctrl + Shift + Alt + /  然后双击Shift搜索进入Registry ，找到compiler.automake.allow.when.app.running ，然后勾选上。<br><img src="/images/2019/02/idea/640 [11].jpg" alt=""><br><img src="/images/2019/02/idea/640 [12].jpg" alt=""></p>
+<h3 id="2-调试技巧"><a href="#2-调试技巧" class="headerlink" title="2. 调试技巧"></a>2. 调试技巧</h3><h4 id="2-1-查看变量并修改值"><a href="#2-1-查看变量并修改值" class="headerlink" title="2.1 查看变量并修改值"></a>2.1 查看变量并修改值</h4><p>每个IDE在调试代码时都提供了一个观察当前上下文变量值的窗口。其实除了查看之外，一些非final的基本类型，还可以直接在此处修改值。这样可以直接将值修改成我们期望的值直接调试我们想测试的情形。<br><img src="/images/2019/02/idea/640 [1].png" alt=""></p>
+<h4 id="2-2-表达式计算功能"><a href="#2-2-表达式计算功能" class="headerlink" title="2.2 表达式计算功能"></a>2.2 表达式计算功能</h4><p>这个功能可以在当前代码的上下文内，执行你临时写的代码来验证你的猜想，而不用再写代码去验证。或者可以临时改变某些变量，让代码朝着自己期望的方向执行。</p>
+<p>例如，当前方法传入一个List，但这个方法里少一个你后面条件需要使用到的元素，此时你可以临时使用片断代码执行的功能，添加一个进去。<br><img src="/images/2019/02/idea/640 [13].jpg" alt=""></p>
+<h4 id="2-3-条件断点"><a href="#2-3-条件断点" class="headerlink" title="2.3 条件断点"></a>2.3 条件断点</h4><p>为了调试代码，就需要在要观察变更的地方添加断点，然后小心翼翼的一步步执行。但是如果是在一个循环里，又或者该方法会被多线程同时调用到的时候，你小心的向下单步调试，发现没有你关心的内容，又从循环开始处跑下来，还是没你的内容，人就开始烦燥起来。</p>
+<p>其实，在添加断点的时候，我们可以为断点增加一定的条件，这样，在指定的条件满足时，断点才会生效。IntelliJ IDEA内，在断点上右击，会弹出如下图的条件框，输入指定的条件即可。</p>
+<p><img src="/images/2019/02/idea/640 [14].jpg" alt=""></p>
+<h4 id="2-4-后退执行"><a href="#2-4-后退执行" class="headerlink" title="2.4 后退执行"></a>2.4 后退执行</h4><p>这里所说的后退执行，是有些时候我们在debug代码时，懒的每个方法都进入单步调试，就会出现你观察一个变量值的变化时，某个方法没跟进去，结果值就变了，不得不重来一次。依靠后退执行的功能，可以后退，就像下棋时悔棋那种功能一样。当然，这个后退招待的名字是我自己起的，在IDE里被称为Drop Frame。<br><img src="/images/2019/02/idea/640 [15].jpg" alt=""></p>
+<p><strong>注意，drop frame虽然可以回退方法，但是被这个方法改变值的变量是不能回退到原来的值的。</strong></p>
+<h4 id="2-5-多线程调试"><a href="#2-5-多线程调试" class="headerlink" title="2.5 多线程调试"></a>2.5 多线程调试</h4><p>开发过多线程应用的朋友应该有体会，有些时候，为了观察多个线程间变量的不同状态，以及锁的获取等，就会想到在代码里加个断点debug一下。在IDE里断点停下来的时候，可以切换到另外的线程中，跑其他的代码，不会互相影响。在IDEA是有这个功能的：<br><img src="/images/2019/02/idea/640 [2].png" alt=""></p>
+<p>在断点上面右击，在Suspend标签上选择”Thread”选项，这样当一个线程到达断点时就不会影响其他线程，其他线程还会继续执行。如果你选择”ALL”选项，那么当一个线程执行到断点时，其他线程都会被挂起进入SLEEPING状态。</p>
+<h3 id="3-常用快捷键（小技巧）"><a href="#3-常用快捷键（小技巧）" class="headerlink" title="3. 常用快捷键（小技巧）"></a>3. 常用快捷键（小技巧）</h3><p> IntelliJ IDEA 于 2001 年 1 月诞生，并在 3.0 版本之后屡次获得各类大奖，从而奠定了它在 IDEA 中地位。而IDEA的快捷键能大大提升我们的开发效率和编程体验，让开发者为之着迷。</p>
+<h4 id="3-1-搜索相关"><a href="#3-1-搜索相关" class="headerlink" title="3.1 搜索相关"></a>3.1 搜索相关</h4><ul>
+<li>alt+F7（右键“find usage”）/ctr+鼠标左击：查找当前类、方法和变量在哪些地方使用过；</li>
+<li>ctrl+N： 查找类；</li>
+<li>ctrl+N+:行号（比如String：10 指跳转到String类的第10行 ）</li>
+<li>ctrl+F/alt+f3：在当前编辑的文档中查找；</li>
+<li>ctrl+shitf+F ：在所有文件中查找；</li>
+<li>ctrl+shift+N ：查找文件；</li>
+<li>double shift：search everywhere；</li>
+<li>search struct：按照模板搜索代码。</li>
+</ul>
+<h4 id="3-2-代码编辑相关"><a href="#3-2-代码编辑相关" class="headerlink" title="3.2 代码编辑相关"></a>3.2 代码编辑相关</h4><ul>
+<li>alt+insert：插入构造函数，setter/getter方法；</li>
+<li>ctrl+alt+space ：自动补全代码；</li>
+<li>ctrl+shift+enter：补全代码</li>
+<li>ctrl+/ :代码注释；</li>
+<li>ctrl+shirt+/ : 代码注释；</li>
+<li>ctrl+X：剪切行；</li>
+<li>ctrl+D：赋值行；</li>
+<li>ctrl+W：智能选中相关代码；</li>
+<li>ctrl+alt+t : 选中代码块 可以添加try catch if-else块</li>
+<li>ctrl+J ：提示缩写</li>
+<li>alt+J： 逐个选中并高亮一个变量</li>
+<li>shift+F6: rename变量和方法等；</li>
+<li>ctrl+P：显示一个方法的参数情况</li>
+<li>ctrl+O ：重载一个父类或接口的方法</li>
+<li>alt+1 –&gt;ctrl+shift+&gt; : 首先alt+1定位project，然后再调整分割线</li>
+<li>F11：添加书签，收藏关键业务代码</li>
+<li>shift+F11：显示书签</li>
+<li>ctrl+enter:重命名书签</li>
+<li>ctrl+z/ctrl+shift+z</li>
+<li>ctrl+shift+f7结合f3:ctrl+shift+f7可以高亮某个变量，而且随着鼠标的移动，这个高亮是不会消失的(这个很重要)。然后使用f3找到下一个使用该变量的地方。</li>
+<li>ctrl+shift+. 折叠代码块，ctrl++号;还原代码块；</li>
+<li>CTRL+SHIFT+F7：把光标放在某个元素中，按下快捷键之后，IDE将高亮显示所选元素所有出现过的地方。</li>
+</ul>
+<h4 id="3-3-导航相关"><a href="#3-3-导航相关" class="headerlink" title="3.3 导航相关"></a>3.3 导航相关</h4><ul>
+<li>ctrl+反点号 : 基础设置；</li>
+<li>Ctrl+Shift+V ：使用最近复制过的文本；</li>
+<li>ctrl+tab ：历史tab导航；</li>
+<li>ctrl+E ：最近浏览过的文件；</li>
+<li>ctrl+shift+e ：最近编辑过的文件；</li>
+<li>ctrl + F12 ：列举类的成员变量和方法；</li>
+<li>ctrl + H ： 查看类的继承关系</li>
+<li>Ctrl+Shift+Backspace（Go to | Last Edit Location）让你调转到代码中所做改变的最后一个地方，多按几次Ctrl-Shift-Backspace查看更深的修改历史；</li>
+<li>ctrl+alt+&lt; / ctrl+alt+&gt;  : 可以在前两次操作之间切换，有点像浏览器的前进后退功能</li>
+<li>Ctrl-Alt-Down/Ctrl-Alt-Up快捷键则可以在编译器错误信息或者查找操作结果间跳转；</li>
+<li>ESC ：将焦点移到编辑器窗口</li>
+<li>shift+esc ：将焦点移动到编辑器窗口，并且关闭工具窗口</li>
+<li>F12 打开上次使用的工具窗口</li>
+<li>alt+home:浏览导航栏；</li>
+<li>ctrl+]或者ctrl+[:括号匹配:这个也非常有用，因为代码太长，某个for循环，可能已经撑满整个屏幕了。这个时候，找到某个大括号对应的另外一边就很费劲。你可以将光标定位在某个大括号一边，然后使用ctrl+]或者ctrl+[来回定位即可。</li>
+</ul>
+<h3 id="4-插件推荐"><a href="#4-插件推荐" class="headerlink" title="4. 插件推荐"></a>4. 插件推荐</h3><ul>
+<li>阿里巴巴规约插件；</li>
+<li>Key promoter（快捷键提示）；</li>
+<li>jrebel(热部署)；</li>
+<li>findbugs（帮助寻找代码可能潜在的bug）；</li>
+<li>grep console;</li>
+<li>.ignore(生成各种ignore文件)；</li>
+<li>lombok（支持各种注解，省略代码）；</li>
+<li>GsonFormat（一键根据json文本生成java类）；</li>
+<li>Maven Helper；</li>
+<li>VisualVM Launcher；（jvm调优必备工具）；</li>
+<li>MyBatisCodeHelperPro（mybatis代码自动生成插件）；</li>
+<li>Rainbow Brackets（彩虹颜色的括号，代码看起来比较舒服）；</li>
+<li>Translation（翻译插件）；</li>
+<li>String Manipulation（提供强大的文本转换操作）；</li>
+<li>Nyan progress bar（装逼进度条）；</li>
+<li>Background Image Plus（背景图插件）；</li>
+<li>activate-power-mode OR Power mode II（字节跳动插件）；</li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2019/03/04/IDEA简明使用指南/" data-id="cjsui6czv000tyw3d7289ay71" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/02/26/Class和ClassLoader的getResource方法对比/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Class和ClassLoader的getResource方法对比</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Collection/" style="font-size: 15px; color: #32cd14">Collection</a> <a href="/tags/IDEA/" style="font-size: 15px; color: #32cd14">IDEA</a> <a href="/tags/Java基础/" style="font-size: 20px; color: #32cd14">Java基础</a> <a href="/tags/个人成长/" style="font-size: 15px; color: #32cd14">个人成长</a> <a href="/tags/工具/" style="font-size: 15px; color: #32cd14">工具</a> <a href="/tags/年度计划/" style="font-size: 15px; color: #32cd14">年度计划</a>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2019 songxia<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
