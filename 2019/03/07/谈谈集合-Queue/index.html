@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>谈谈集合.Queue | 写代码的木公</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="之前说到，Java中集合的主要作用就是装盛其他数据和实现常见的数据结构。所以当我们要用到“栈”、“队列”、“链表”和“数组”等常见的数据结构时就应该想到可以直接使用JDK给我们提供的集合框架。比如说当我们想用到队列时就应该想到使用LinkedList和ArrayDeque。本篇博客将介绍Collection框架中的Queue。  Queue接口继承了Collection接口，所以Collecti">
+<meta name="keywords" content="Java基础,Collection">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈谈集合.Queue">
+<meta property="og:url" content="http://yoursite.com/2019/03/07/谈谈集合-Queue/index.html">
+<meta property="og:site_name" content="写代码的木公">
+<meta property="og:description" content="之前说到，Java中集合的主要作用就是装盛其他数据和实现常见的数据结构。所以当我们要用到“栈”、“队列”、“链表”和“数组”等常见的数据结构时就应该想到可以直接使用JDK给我们提供的集合框架。比如说当我们想用到队列时就应该想到使用LinkedList和ArrayDeque。本篇博客将介绍Collection框架中的Queue。  Queue接口继承了Collection接口，所以Collecti">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/collection.jpeg">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/queue/tail.png">
+<meta property="og:image" content="http://yoursite.com/images/2019/02/queue/resize.png">
+<meta property="og:updated_time" content="2019-03-07T14:05:51.732Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="谈谈集合.Queue">
+<meta name="twitter:description" content="之前说到，Java中集合的主要作用就是装盛其他数据和实现常见的数据结构。所以当我们要用到“栈”、“队列”、“链表”和“数组”等常见的数据结构时就应该想到可以直接使用JDK给我们提供的集合框架。比如说当我们想用到队列时就应该想到使用LinkedList和ArrayDeque。本篇博客将介绍Collection框架中的Queue。  Queue接口继承了Collection接口，所以Collecti">
+<meta name="twitter:image" content="http://yoursite.com/images/2019/02/collection.jpeg">
+    
+
+    
+        <link rel="alternate" href="/" title="写代码的木公" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--<link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">-->
+    <!--<script src="/libs/bootstrap/js/bootstrap.js"></script>-->
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">写代码的木公</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">陈松夏</h2>
+            <h3 id="title">Java开发工程师</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+            <a id="follow" target="_blank" href="https://github.com/chensongxia/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                6
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                7
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-谈谈集合-Queue" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            谈谈集合.Queue
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        <!---->
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/03/07/谈谈集合-Queue/">
+            <time datetime="2019-03-07T13:58:58.000Z" itemprop="datePublished">2019-03-07</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+        <i class="fa fa-user"></i>
+        陈松夏
+    </div>
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Java基础/">Java基础</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Collection/">Collection</a>, <a class="tag-link" href="/tags/Java基础/">Java基础</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <hr>
+<p>之前说到，Java中集合的主要作用就是装盛其他数据和实现常见的数据结构。所以当我们要用到“栈”、“队列”、“链表”和“数组”等常见的数据结构时就应该想到可以直接使用JDK给我们提供的集合框架。<strong>比如说当我们想用到队列时就应该想到使用LinkedList和ArrayDeque</strong>。本篇博客将介绍Collection框架中的Queue。</p>
+<p><img src="/images/2019/02/collection.jpeg" alt="Java集合体系"></p>
+<p>Queue接口继承了Collection接口，所以Collection的所有方法Queue的实现类中都包含，同时还有一个子接口Dqueue，表示双端队列。对于Queue我们主要掌握ArrayDeque和LinkedList，了解PriorityQueue。</p>
+<hr>
+<a id="more"></a>
+<h2 id="1-接口介绍"><a href="#1-接口介绍" class="headerlink" title="1. 接口介绍"></a>1. 接口介绍</h2><p>Queue也是Java集合框架中定义的一种接口，直接继承自 Collection 接口。除了基本的 Collection 接口规定测操作外，Queue 接口还定义一组针对队列的特殊操作。通常来说，Queue是按照先进先出(FIFO)的方式来管理其中的元素的，但是优先队列是一个例外。</p>
+<p>Deque接口继承自Queue接口，但Deque支持同时从两端添加或移除元素，因此又被成为双端队列。鉴于此，Deque接口的实现可以被当作FIFO队列使用，也可以当作LIFO队列（栈）来使用。官方也是推荐使用 Deque的实现来替代Stack。Deque的主要实现类有ArrayDeque和LinkedList。</p>
+<p>ArrayDeque是Deque接口的一种具体实现，是依赖于可变数组来实现的。ArrayDeque没有容量限制，可根据需求自动进行扩容。ArrayDeque不支持值为null的元素。</p>
+<p>LinkedList的具体特性已经在之前的博客中介绍过了，这边不再重新介绍了。</p>
+<h3 id="1-1-Queue接口概览"><a href="#1-1-Queue接口概览" class="headerlink" title="1.1 Queue接口概览"></a>1.1 Queue接口概览</h3><p>Queue可以被当做一个队列来使用，实现FIFO操作，主要提供下面的操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Queue</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//向队列尾部插入一个元素，并返回true</span></span><br><span class="line">    <span class="comment">//如果队列已满，抛出IllegalStateException异常</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//向队列尾部插入一个元素，并返回true</span></span><br><span class="line">    <span class="comment">//如果队列已满，返回false</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">offer</span><span class="params">(E e)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//取出队列头部的元素，并从队列中移除</span></span><br><span class="line">    <span class="comment">//队列为空，抛出NoSuchElementException异常</span></span><br><span class="line">    <span class="function">E <span class="title">remove</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//取出队列头部的元素，并从队列中移除</span></span><br><span class="line">    <span class="comment">//队列为空，返回null</span></span><br><span class="line">    <span class="function">E <span class="title">poll</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//取出队列头部的元素，但并不移除</span></span><br><span class="line">    <span class="comment">//如果队列为空，抛出NoSuchElementException异常</span></span><br><span class="line">    <span class="function">E <span class="title">element</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//取出队列头部的元素，但并不移除</span></span><br><span class="line">    <span class="comment">//队列为空，返回null</span></span><br><span class="line">    <span class="function">E <span class="title">peek</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-Deque接口"><a href="#1-2-Deque接口" class="headerlink" title="1.2 Deque接口"></a>1.2 Deque接口</h3><p>Deque接口是一个双端队列，可以对队列的头尾进行操作，所以也可以当做栈来使用。</p>
+<p>下面的表格列举了Queue和Deque接口的相对应方法<br>|Queue方法|    Deque方法|<br>|———|———-|<br>|add(e)|    addLast(e)|<br>|offer(e)|    offerLast(e)|<br>|remove()|    removeFirst()|<br>|poll()|    pollFirst()|<br>|element()|    getFirst()|<br>|peek()|    peekFirst()|</p>
+<p>Deque还有一个重要的功能是可以当做栈来使用<br>|Stack方法|    Deque方法|<br>|———|———-|<br>|push(e)|    addFirst(e)|<br>|pop()|    removeFirst()|<br>|peek()|    peekFirst()|</p>
+<h2 id="2-ArrayDeque"><a href="#2-ArrayDeque" class="headerlink" title="2. ArrayDeque"></a>2. ArrayDeque</h2><p>ArrayDeque是Deque基于数组的实现。</p>
+<blockquote>
+<p>以下内容来源于网络<a href="https://blog.csdn.net/qq_30379689/article/details/80558771" target="_blank" rel="noopener">博客</a></p>
+</blockquote>
+<h3 id="2-1-ArrayDeque的成员变量"><a href="#2-1-ArrayDeque的成员变量" class="headerlink" title="2.1 ArrayDeque的成员变量"></a>2.1 ArrayDeque的成员变量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组存储元素</span></span><br><span class="line"><span class="keyword">transient</span> Object[] elements;</span><br><span class="line"><span class="comment">//头部元素索引</span></span><br><span class="line"><span class="keyword">transient</span> <span class="keyword">int</span> head;</span><br><span class="line"><span class="comment">//尾部元素索引</span></span><br><span class="line"><span class="keyword">transient</span> <span class="keyword">int</span> tail;</span><br><span class="line"><span class="comment">//最小容量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_INITIAL_CAPACITY = <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+<p>ArrayDeque底层使用数组存储元素，同时还使用head和tail来表示索引，但注意tail不是尾部元素的索引，而是尾部元素的下一位，即下一个将要被加入的元素的索引。</p>
+<h3 id="2-2-初始化"><a href="#2-2-初始化" class="headerlink" title="2.2 初始化"></a>2.2 初始化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayDeque</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    elements = <span class="keyword">new</span> Object[<span class="number">16</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayDeque</span><span class="params">(<span class="keyword">int</span> numElements)</span> </span>&#123;</span><br><span class="line">    allocateElements(numElements);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayDeque</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">    allocateElements(c.size());</span><br><span class="line">    addAll(c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">allocateElements</span><span class="params">(<span class="keyword">int</span> numElements)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> initialCapacity = MIN_INITIAL_CAPACITY;</span><br><span class="line">    <span class="comment">// Find the best power of two to hold elements.</span></span><br><span class="line">    <span class="comment">// Tests "&lt;=" because arrays aren't kept full.</span></span><br><span class="line">    <span class="keyword">if</span> (numElements &gt;= initialCapacity) &#123;</span><br><span class="line">        initialCapacity = numElements;</span><br><span class="line">        initialCapacity |= (initialCapacity &gt;&gt;&gt;  <span class="number">1</span>);</span><br><span class="line">        initialCapacity |= (initialCapacity &gt;&gt;&gt;  <span class="number">2</span>);</span><br><span class="line">        initialCapacity |= (initialCapacity &gt;&gt;&gt;  <span class="number">4</span>);</span><br><span class="line">        initialCapacity |= (initialCapacity &gt;&gt;&gt;  <span class="number">8</span>);</span><br><span class="line">        initialCapacity |= (initialCapacity &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">        initialCapacity++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (initialCapacity &lt; <span class="number">0</span>)   <span class="comment">// Too many elements, must back off</span></span><br><span class="line">            initialCapacity &gt;&gt;&gt;= <span class="number">1</span>;<span class="comment">// Good luck allocating 2 ^ 30 elements</span></span><br><span class="line">    &#125;</span><br><span class="line">    elements = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这边讲下private void allocateElements(int numElements)这个方法。ArrayDeque的初始化容量必须是2^n。所以你传的初始化容量如果是10，那么实际申请的数组容量是16，如果申请的容量是33，那么实际的容量是62。如果申请的容量是62,那么实际申请的容量是128。</p>
+<h3 id="2-3-add方法"><a href="#2-3-add方法" class="headerlink" title="2.3 add方法"></a>2.3 add方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    elements[head = (head - <span class="number">1</span>) &amp; (elements.length - <span class="number">1</span>)] = e;</span><br><span class="line">    <span class="keyword">if</span> (head == tail)</span><br><span class="line">        doubleCapacity();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (e == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="comment">//tail中保存的是即将加入末尾的元素的索引</span></span><br><span class="line">    elements[tail] = e;</span><br><span class="line">    <span class="comment">//tail向后移动一位</span></span><br><span class="line">    <span class="keyword">if</span> ( (tail = (tail + <span class="number">1</span>) &amp; (elements.length - <span class="number">1</span>)) == head)</span><br><span class="line">        <span class="comment">//tail和head相遇，空间用尽，需要扩容</span></span><br><span class="line">        doubleCapacity();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在存储的过程中，这里有个有趣的算法，就是tail的计算公式(tail = (tail + 1) &amp; (elements.length - 1))，注意这里的存储采用的是环形队列的形式，也就是当tail到达容量最后一个的时候，tail就为等于0，否则tail的值tail+1。</p>
+<p>head也采用了类似的方式，每次在头部添加元素后，head都会指向最新被添加进去的那个元素所在的位置。当head小于0时也会采取环的形式存元素，比如head已经指向位置0，又向队列中头部添加一个元素后，head会变成length-1。</p>
+<p><img src="/images/2019/02/queue/tail.png" alt="尾部插入"></p>
+<p>关于head和tail，需要主要的是head永远指向第一个元素的索引位置，tail永远指向尾部位置（这个位置上暂时还没有元素，如果在尾部插入元素，则在这个位置上插入）</p>
+<h3 id="2-4-扩容机制"><a href="#2-4-扩容机制" class="headerlink" title="2.4 扩容机制"></a>2.4 扩容机制</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">doubleCapacity</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">assert</span> head == tail; <span class="comment">//扩容时头部索引和尾部索引肯定相等</span></span><br><span class="line">    <span class="keyword">int</span> p = head;</span><br><span class="line">    <span class="keyword">int</span> n = elements.length;</span><br><span class="line">    <span class="comment">//头部索引到数组末端(length-1处)共有多少元素</span></span><br><span class="line">    <span class="keyword">int</span> r = n - p; <span class="comment">// number of elements to the right of p</span></span><br><span class="line">    <span class="comment">//容量翻倍</span></span><br><span class="line">    <span class="keyword">int</span> newCapacity = n &lt;&lt; <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//容量过大，溢出了</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Sorry, deque too big"</span>);</span><br><span class="line">    <span class="comment">//分配新空间</span></span><br><span class="line">    Object[] a = <span class="keyword">new</span> Object[newCapacity];</span><br><span class="line">    <span class="comment">//复制头部索引到数组末端的元素到新数组的头部</span></span><br><span class="line">    System.arraycopy(elements, p, a, <span class="number">0</span>, r);</span><br><span class="line">    <span class="comment">//复制其余元素</span></span><br><span class="line">    System.arraycopy(elements, <span class="number">0</span>, a, r, p);</span><br><span class="line">    elements = a;</span><br><span class="line">    <span class="comment">//重置头尾索引</span></span><br><span class="line">    head = <span class="number">0</span>;</span><br><span class="line">    tail = n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下图是扩容的示意图</p>
+<p><img src="/images/2019/02/queue/resize.png" alt="扩容机制"></p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>ArrayDeque是Deque 接口的一种具体实现，是依赖于可变数组来实现的。ArrayDeque 没有容量限制，可根据需求自动进行扩容。ArrayDeque 可以作为栈来使用，效率要高于Stack；ArrayDeque 也可以作为队列来使用，效率相较于基于双向链表的LinkedList也要更好一些。</p>
+<p>所以我们程序中如果要使用到“队列”和“栈”这种数据结构，我们要首先想到LinkedList和ArrayDeque。个人认为作为队列和栈来使用的话，两者性能相差不大，但是ArrayDeque需要扩容，还需要申请连续的内存空间，所以个人更推荐使用LinkedList，不知道我的理解对不对。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2019/03/07/谈谈集合-Queue/" data-id="cjsypf087000kao3dhb0s5s4t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/03/05/Chrome快捷键/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Chrome快捷键</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Chrome/" style="font-size: 15px; color: #32cd14">Chrome</a> <a href="/tags/Collection/" style="font-size: 17.5px; color: #32cd14">Collection</a> <a href="/tags/IDEA/" style="font-size: 15px; color: #32cd14">IDEA</a> <a href="/tags/Java基础/" style="font-size: 20px; color: #32cd14">Java基础</a> <a href="/tags/个人成长/" style="font-size: 15px; color: #32cd14">个人成长</a> <a href="/tags/工具/" style="font-size: 17.5px; color: #32cd14">工具</a> <a href="/tags/年度计划/" style="font-size: 15px; color: #32cd14">年度计划</a>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2019 songxia<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
