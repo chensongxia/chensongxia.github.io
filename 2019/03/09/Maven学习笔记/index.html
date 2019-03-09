@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Maven学习笔记 | 写代码的木公</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Maven是我们在做Java开发过程中用经常用到的一个辅助工具。本篇博客是我学习Maven的一个记录博客，学习过程主要参考《Maven实战》这本书。同时也参考了Maven的官方文档。  1. Maven简介1.1 什么是MavenMaven是一个开源的Java项目构建、依赖管理和项目信息管理工具。 1.2 何为构建所谓构建是指项目编译、运行单元测试、生成项目文档、打包和项目部署等一系列操作。 1">
+<meta name="keywords" content="工具,Maven">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/03/09/Maven学习笔记/index.html">
+<meta property="og:site_name" content="写代码的木公">
+<meta property="og:description" content="Maven是我们在做Java开发过程中用经常用到的一个辅助工具。本篇博客是我学习Maven的一个记录博客，学习过程主要参考《Maven实战》这本书。同时也参考了Maven的官方文档。  1. Maven简介1.1 什么是MavenMaven是一个开源的Java项目构建、依赖管理和项目信息管理工具。 1.2 何为构建所谓构建是指项目编译、运行单元测试、生成项目文档、打包和项目部署等一系列操作。 1">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/915951/201612/915951-20161205142602226-1306419231.png">
+<meta property="og:image" content="http://img.blog.csdn.net/20170521190802328?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTF9TYWls/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-03-09T14:11:56.636Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maven学习笔记">
+<meta name="twitter:description" content="Maven是我们在做Java开发过程中用经常用到的一个辅助工具。本篇博客是我学习Maven的一个记录博客，学习过程主要参考《Maven实战》这本书。同时也参考了Maven的官方文档。  1. Maven简介1.1 什么是MavenMaven是一个开源的Java项目构建、依赖管理和项目信息管理工具。 1.2 何为构建所谓构建是指项目编译、运行单元测试、生成项目文档、打包和项目部署等一系列操作。 1">
+<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/915951/201612/915951-20161205142602226-1306419231.png">
+    
+
+    
+        <link rel="alternate" href="/" title="写代码的木公" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--<link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">-->
+    <!--<script src="/libs/bootstrap/js/bootstrap.js"></script>-->
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">写代码的木公</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">陈松夏</h2>
+            <h3 id="title">Java开发工程师</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+            <a id="follow" target="_blank" href="https://github.com/chensongxia/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                8
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                8
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-Maven学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Maven学习笔记
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        <!---->
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/03/09/Maven学习笔记/">
+            <time datetime="2019-03-09T14:06:01.000Z" itemprop="datePublished">2019-03-09</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+        <i class="fa fa-user"></i>
+        陈松夏
+    </div>
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/工具/">工具</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Maven/">Maven</a>, <a class="tag-link" href="/tags/工具/">工具</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <hr>
+<p>Maven是我们在做Java开发过程中用经常用到的一个辅助工具。本篇博客是我学习Maven的一个记录博客，学习过程主要参考《Maven实战》这本书。同时也参考了<a href="http://maven.apache.org/" target="_blank" rel="noopener">Maven的官方文档</a>。</p>
+<hr>
+<h2 id="1-Maven简介"><a href="#1-Maven简介" class="headerlink" title="1. Maven简介"></a>1. Maven简介</h2><h3 id="1-1-什么是Maven"><a href="#1-1-什么是Maven" class="headerlink" title="1.1 什么是Maven"></a>1.1 什么是Maven</h3><p><strong>Maven</strong>是一个开源的Java项目<strong>构建、依赖管理和项目信息管理</strong>工具。</p>
+<h3 id="1-2-何为构建"><a href="#1-2-何为构建" class="headerlink" title="1.2 何为构建"></a>1.2 何为构建</h3><p>所谓<strong>构建</strong>是指项目编译、运行单元测试、生成项目文档、打包和项目部署等一系列操作。</p>
+<h3 id="1-3-Maven的优点"><a href="#1-3-Maven的优点" class="headerlink" title="1.3 Maven的优点"></a>1.3 Maven的优点</h3><p>Maven是一个优秀的构建工具：帮我们<strong>规范了项目的构建过程</strong>，我们不在需要像以前那样自己编写不通用的项目构建脚本，<strong>大大降低自写脚本出错的效率</strong>，同时也规范了团队项目的标准化。只需执行一些简单的Maven命令就可以实现项目构建工作。另外，Maven还提供了很多现成插件来完成各种构建任务，不需要我们自己去写脚本。<br><a id="more"></a><br>Maven抽象了一个完整的项目构建的生命周期模型，这个模型吸取了其他构建工具的优点，总结了大量项目的实际需求。如果遵循这个模型，可以避免很多不必要的错误。Maven已经提供了大量成熟的Maven插件来完成它抽象的这套生命周期模型，如果我们的项目有特殊的构建需求，可以通过实现自己的构建插件来完成项目特殊的构建需求。</p>
+<p>统一的依赖管理（中央仓库）。</p>
+<p>Maven还可以管理如下信息：项目描述、开发者列表、版本控制系统地址、许可证和缺陷管理系统地址等。  </p>
+<h3 id="1-3-同类技术对比"><a href="#1-3-同类技术对比" class="headerlink" title="1.3 同类技术对比"></a>1.3 同类技术对比</h3><p>在Maven之前，Make和Ant也是两个比较流行的项目构建工具。但是使用这两个工具，<strong>针对每个项目我们必须自己编写项目构建脚本，而且这个两个工具都没有依赖管理的功能（Ant依赖于Lvy进行依赖管理）</strong>，所以这两个工具逐渐成为过去式，Maven成为了Java世界中项目构建的标准。（Gradle也是一款不错的项目构建工具）</p>
+<h2 id="2-Maven安装配置"><a href="#2-Maven安装配置" class="headerlink" title="2. Maven安装配置"></a>2. Maven安装配置</h2><h3 id="2-1-windows环境安装"><a href="#2-1-windows环境安装" class="headerlink" title="2.1 windows环境安装"></a>2.1 windows环境安装</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">step1：安装JDK，配置JAVA_HOME,添加到path；</span><br><span class="line">step2：下载Maven安装包，解压到指定目录；</span><br><span class="line">step3：将Maven的安装目录添加到path；</span><br><span class="line">step3：使用mvn -v校验是否安装成功。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置M2_HOME 和 MAVEN_HOME两个环境变量（指代Maven的安装目录，到bin那层目录）<br>通常需要设置<strong>MAVEN_OPTS</strong>的值为-Xms128m -Xmx512m，因为Java默认的最大可用内存往往不能够满足Maven运行的需要，比如在项目较大时，使用Maven生成项目站点需要占用大量的内存，如果没有该配置，则很容易得到java.lang.OutOfMemeoryError异常。因此，一开始就配置该环境变量是推荐的做法。</p>
+</blockquote>
+<h3 id="2-2-Linux环境安装"><a href="#2-2-Linux环境安装" class="headerlink" title="2.2 Linux环境安装"></a>2.2 Linux环境安装</h3><p>安装方式和上述类似</p>
+<h3 id="2-3-m2目录"><a href="#2-3-m2目录" class="headerlink" title="2.3 .m2目录"></a>2.3 .m2目录</h3><p>安装完Maven后，一般会在用户的主目录下有一个.m2目录。这个下面会有一个仓库目录，默认情况下，缓存下来的Jar包会存放在这个目录下。我们可以在这个目录下添加settings.xml文件配置仓库目录。注意这个settings文件只对当前用户生效。M2_HOME/config下的settings文件对所有用户生效。推荐使用用户范围的settings。</p>
+<h3 id="2-4-配置Http代理"><a href="#2-4-配置Http代理" class="headerlink" title="2.4 配置Http代理"></a>2.4 配置Http代理</h3><p>有时候公司为了安全起见，内部网络不能直接访问外部互联网。但是提供了代理服务器进行外部网络访问，这是想要让Maven访问到外部的Maven中心仓库需要配置代理。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line"> ...</span><br><span class="line"> <span class="tag">&lt;<span class="name">proxies</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">proxy</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>optional<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">active</span>&gt;</span>true<span class="tag">&lt;/<span class="name">active</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">protocol</span>&gt;</span>http<span class="tag">&lt;/<span class="name">protocol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">host</span>&gt;</span>10.47.22.247<span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">port</span>&gt;</span>80<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">username</span>&gt;</span>xx<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">password</span>&gt;</span>xx<span class="tag">&lt;/<span class="name">pawwword</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">nonProxyHosts</span>&gt;</span>some.host.com|*.google.com<span class="tag">&lt;/<span class="name">nonProxyHosts</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">proxy</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">proxies</span>&gt;</span></span><br><span class="line"> ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>proxies下面可以配置多个代理，默认情况下第一个被激活的代理生效。如果代理服务器需要认证，那我们还需要提供用户名密码。<nonproxyhosts>标签用来指定访问哪个地址时不需要经过这个代理。</nonproxyhosts></p>
+<h3 id="2-5-Maven安装最佳实践"><a href="#2-5-Maven安装最佳实践" class="headerlink" title="2.5 Maven安装最佳实践"></a>2.5 Maven安装最佳实践</h3><h4 id="2-5-1-配置MAVEN-OPTS"><a href="#2-5-1-配置MAVEN-OPTS" class="headerlink" title="2.5.1 配置MAVEN_OPTS"></a>2.5.1 配置MAVEN_OPTS</h4><p>通常需要设置<strong>MAVEN_OPTS</strong>的值为-Xms128m -Xmx512m，因为Java默认的最大可用内存往往不能够满足Maven运行的需要，比如在项目较大时，使用Maven生成项目站点需要占用大量的内存，如果没有该配置，则很容易得到java.lang.OutOfMemeoryError异常。因此，一开始就配置该环境变量是推荐的做法。</p>
+<h4 id="2-5-2-配置用户范围的settings-xml"><a href="#2-5-2-配置用户范围的settings-xml" class="headerlink" title="2.5.2 配置用户范围的settings.xml"></a>2.5.2 配置用户范围的settings.xml</h4><p>我们可以配置M2_HOME/conf/settings.xml，也可以配置~/.m2/settings.xml。前者会对所有用户生效，后者只会对当前用户生效。推荐配置用户范围内的setting，这样不会影响其他用户的配置，在升级Maven时也不需要重新配置。当然，如果你需要做全局配置，就需要配置做全局配置。</p>
+<h2 id="3-Maven坐标和依赖"><a href="#3-Maven坐标和依赖" class="headerlink" title="3. Maven坐标和依赖"></a>3. Maven坐标和依赖</h2><h3 id="3-1-Maven坐标"><a href="#3-1-Maven坐标" class="headerlink" title="3.1 Maven坐标"></a>3.1 Maven坐标</h3><p>在Maven中，坐标可以理解为一个依赖的唯一标识。Maven的坐标元素包括groupId、artifactId、version、packaging、classfier。只要我们提供正确的坐标元素，Maven就能找到对应的构件，首先去你的本地仓库查找，没有的话再去远程仓库下载。<strong>如果没有配置远程仓库，会默认从中央仓库地址(<a href="http://repo1.maven.org/maven2)下载构件" target="_blank" rel="noopener">http://repo1.maven.org/maven2)下载构件</a></strong>，该中央仓库包含了世界上大部分流行的开源项目构件，但不一定所有构件都有。下面介绍下坐标中每个标签的含义：</p>
+<ul>
+<li>groupId:定义当前Maven项目的隶属的实际项目。比如xx公司xx团队的xx项目，xx项目下又包含几个模块项目。这时groupId我们就可以命名为com.xxCompany.xxTeam.xxProject，子项目的名字可以通过artifactId来指定；</li>
+<li>artifactId：定义实际项目中的一个Maven模块（子项目）的名字。一般推荐用项目的名称作为前缀。比如我们整个大项目的名称是xxProject，这个子模块的名称是core。那artifactId可以设置为xxProject-core。</li>
+<li>version：项目的版本</li>
+<li>packaging：项目打包方式（jar、war、pom等）默认的是jar。</li>
+<li>classifier：用来定义javadoc和源代码source等构件，这个元素不能直接定义。</li>
+</ul>
+<blockquote>
+<p>邮件测试时我们可以考虑使用GreenMail这个类库</p>
+</blockquote>
+<h3 id="3-2-dependeny标签的内容"><a href="#3-2-dependeny标签的内容" class="headerlink" title="3.2 dependeny标签的内容"></a>3.2 dependeny标签的内容</h3><p>dependeny标签下面可以有下面的标签：</p>
+<ul>
+<li>groupId、artifactId和version这几个标签来定位具体的依赖；</li>
+<li>type这个标签对用maven坐标中的packaging属性，一般不需要指定，默认是jar；</li>
+<li>scope：见3.3节详解；</li>
+<li>optional：值是true或false，可选依赖不会被传递；</li>
+<li>exclusions：排除传递依赖。</li>
+</ul>
+<h3 id="3-3-scope属性详解"><a href="#3-3-scope属性详解" class="headerlink" title="3.3 scope属性详解"></a>3.3 scope属性详解</h3><p>Maven环境下有三种classpath，分别是编译classpath、测试classpa和运行classpath。scope属性和这三种classpath有关。scope的值可以是下面几种：</p>
+<ul>
+<li>compile：如果将一个依赖的scope属相设置为compile（默认就是compile），那么这个依赖对于三种classpath都有效；</li>
+<li>test：编译测试classpath有效，这种Jar包不会被打包进最终的项目；</li>
+<li>provide：对于编译和测试有效，运行时无效。说明在项目运行时这个依赖会被提供，就不需要我们打进项目了。典型的就是Servlet-api（这个依赖在运行时会由web容器提供）</li>
+<li>runtime：典型的应用就是JDBC的驱动实现（就是这个依赖的Jar只在项目运行是才会用到）</li>
+<li>system：依赖的Jar包在本地（不建议使用这个属性）</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.xx.xx<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>xx-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>&#123;java.home&#125;/lib/xx.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>import：该属性只会在dependenceManagement属性中生效。用来导入类型为pom的依赖，典型的应用看Springboot。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th style="text-align:center">编译classpath</th>
+<th>测试classpath</th>
+<th style="text-align:right">运行时classpath</th>
+<th>列子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>compile</td>
+<td style="text-align:center">Y</td>
+<td>Y</td>
+<td style="text-align:right">Y</td>
+<td>Spring-core</td>
+</tr>
+<tr>
+<td>test</td>
+<td style="text-align:center">-</td>
+<td>Y</td>
+<td style="text-align:right">-</td>
+<td>junit</td>
+</tr>
+<tr>
+<td>provide</td>
+<td style="text-align:center">Y</td>
+<td>Y</td>
+<td style="text-align:right">-</td>
+<td>servlet-api</td>
+</tr>
+<tr>
+<td>runtime</td>
+<td style="text-align:center">-</td>
+<td>Y</td>
+<td style="text-align:right">Y</td>
+<td>jdbc驱动实现</td>
+</tr>
+<tr>
+<td>system</td>
+<td style="text-align:center">Y</td>
+<td>Y</td>
+<td style="text-align:right">-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-4-传递依赖"><a href="#3-4-传递依赖" class="headerlink" title="3.4 传递依赖"></a>3.4 传递依赖</h3><p>Maven的依赖是具有传递性的，比如A-&gt;B,B-&gt;C,那么A间接的依赖于C，这就是依赖的传递性，其中A对于B是第一直接依赖，B对于C是第二直接依赖，C为A的传递性依赖。这里还有一个依赖scope的问题。如果A-&gt;B的scope是compile，B-&gt;C的scope也是compile，那么A-&gt;C的scope也是compile。</p>
+<p>表格：传递依赖<br>|     |compile|test|provided|runtime|<br>|—–|:—–:|—-|——:|——-|<br>|compile|compile| - | - | runtime |<br>|test|test| - | - | test |<br>|provided|provided| - | provided | provided |<br>|runtime|runtime| - | - | runtime |</p>
+<p>上表中最左边一列表示A-&gt;B的第一直接依赖，最上面一行表示B-&gt;C的第二直接依赖，表格中的内容表示A-&gt;C的依赖内容。举个列子，当A-&gt;B的直接依赖范围是test，B-&gt;C的第二直接依赖是compile，那么A-&gt;C的依赖范围是test。</p>
+<h3 id="3-5-依赖调解"><a href="#3-5-依赖调解" class="headerlink" title="3.5 依赖调解"></a>3.5 依赖调解</h3><p>下面我们来思考这样一个问题，如果A-&gt;B-&gt;C-&gt;X(1.0),A-&gt;D-X(2.0),即A间接依赖X，我们可以看到有两条路径都依赖X，那么maven将会选择哪个版本的X？maven当中有一套自己的规则，我们来说明一下，maven传递性依赖的一些规则以及如何排除依赖冲突。</p>
+<p>Maven里面对于传递性依赖有以下几个规则：</p>
+<ol>
+<li><p>最短路径原则：如果A对于依赖路径中有两个相同的jar包，那么选择路径短的那个包，路径最近者优先，上述会选X(2.0)。</p>
+</li>
+<li><p>第一声明优先原则：如果A对于依赖路径中有两个相同的jar包，路径长度也相同，那么依赖写在前面的优先。例如：A-&gt;B-&gt;F(1.0),A-&gt;C-&gt;F(2.0)，会选F(1.0)。</p>
+</li>
+<li><p><strong>可选依赖不会被传递</strong>，如A-&gt;B,B-&gt;C,B-&gt;D,A对B直接依赖，B对C和D是可选依赖，那么在A中不会引入C和D。可选依赖通过optional元素配置，true表示可选。如果要在A项目中使用C或者D则需要显式地声明C或者D依赖。</p>
+</li>
+</ol>
+<h3 id="3-6-依赖排除"><a href="#3-6-依赖排除" class="headerlink" title="3.6 依赖排除"></a>3.6 依赖排除</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-Maven仓库"><a href="#4-Maven仓库" class="headerlink" title="4. Maven仓库"></a>4. Maven仓库</h2><p><strong>Maven的仓库分为本地仓库和远程仓库</strong>。Maven在寻找依赖的时候会先从本地仓库寻找，本地没有的话会从远程仓库去下载到本地然后再使用。</p>
+<h3 id="4-1-仓库的分类"><a href="#4-1-仓库的分类" class="headerlink" title="4.1 仓库的分类"></a>4.1 仓库的分类</h3><p><img src="http://images2015.cnblogs.com/blog/915951/201612/915951-20161205142602226-1306419231.png" alt="仓库分类"></p>
+<h4 id="4-1-1-本地仓库"><a href="#4-1-1-本地仓库" class="headerlink" title="4.1.1 本地仓库"></a>4.1.1 本地仓库</h4><p>本地仓库需要我们在settings.xml配置文件中配置。注意，默认情况下.m2目录下是没有这文件的，需要我们自己配置。所有的依赖都会被缓存到本地仓库，本地没有的话回去远程仓库拿。</p>
+<pre><code>&lt;localRepository&gt;D:\software\maven\Repository&lt;/localRepository&gt;
+</code></pre><h4 id="4-1-2-远程仓库"><a href="#4-1-2-远程仓库" class="headerlink" title="4.1.2 远程仓库"></a>4.1.2 远程仓库</h4><p>远程仓库有好几种分类：<strong>Maven的中央仓库、Nexus搭建的私有服务器（如果Nexus上没有相应的依赖，Nexus会自动从外部的仓库下载）和JBoss、谷歌的中央仓库等</strong>。一般我们只配置一个远程仓库。如果中央仓库中没有相应的依赖，就会报错。下面是Maven配置的默认的远程仓库，这个仓库中包含了绝大多数的依赖构建，如果我们没做其他配置，Maven就会从这个仓库中下载依赖。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>Central Repository<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://repo.maven.apache.org/maven2<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">layout</span>&gt;</span>default<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Maven还允许用户配置私有服务器。如果我们将远程仓库配置成我们自己搭建的私有服务器，那么Maven每次都会从私有服务器上去请求依赖，如果私服上不存在我们需要的依赖，私服会先从外部仓库下载依赖然后缓存到服务器上再提供给我们。另外私服也允许我们自己上传依赖。架设Maven私服有如下优点：</p>
+<ul>
+<li>节省公司外网贷款；</li>
+<li>因为依赖会被缓存到私服上，所以依赖的下载速度会很快；</li>
+<li>方便上传团队内部的依赖，统一管理，共享。</li>
+</ul>
+<h3 id="4-2-远程仓库的配置"><a href="#4-2-远程仓库的配置" class="headerlink" title="4.2 远程仓库的配置"></a>4.2 远程仓库的配置</h3><p>Maven已经默认为我们配置了一个远程仓库，在maven安装目录下的：/lib/maven-model-builder-${version}.jar中我们可以找到这个配置。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">repository</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">name</span>&gt;</span>Central Repository<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://repo.maven.apache.org/maven2<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">layout</span>&gt;</span>default<span class="tag">&lt;/<span class="name">layout</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">repository</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里我们只要知道，中央仓库的id为central，远程url地址为<a href="http://repo.maven.apache.org/maven2，它关闭了snapshot版本构件下载的支持。" target="_blank" rel="noopener">http://repo.maven.apache.org/maven2，它关闭了snapshot版本构件下载的支持。</a></p>
+<p>当然我们也可以自己在pom中配置repository，有可能你依赖的一个jar在central中找不到，它只存在于某个特定的公共仓库，这样你也不得不添加那个远程仓库的配置。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">project</span>&gt;</span>  </span><br><span class="line">...  </span><br><span class="line">  <span class="tag">&lt;<span class="name">repositories</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-net-cn<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Maven China Mirror<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.net.cn/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">releases</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">releases</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-net-cn<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Maven China Mirror<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.net.cn/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">releases</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">releases</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span>      </span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span>  </span><br><span class="line">...  </span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>我们先看一下<repositories>的配置，你可以在它下面添加多个<repository> ，每个<repository>都有它唯一的ID，一个描述性的name，以及最重要的，远程仓库的url。此外，<releases><enabled>true</enabled></releases>告诉Maven可以从这个仓库下载releases版本的构件，而<snapshots><enabled>false</enabled></snapshots>告诉Maven不要从这个仓库下载snapshot版本的构件。禁止从公共仓库下载snapshot构件是推荐的做法，因为这些构件不稳定，且不受你控制，你应该避免使用。当然，如果你想使用局域网内组织内部的仓库，你可以激活snapshot的支持。</repository></repository></repositories></p>
+<p><strong>这边整理下Maven查询仓库的顺序</strong>：</p>
+<ol>
+<li>先查询本地仓库，如果本地仓库中没有，进入第二步；</li>
+<li>查询Maven给central仓库配置镜像，如果配置了镜像就去镜像查，如果没有，就去中央仓库查；</li>
+<li>查询Maven有没给你自己配置的仓库指定镜像，如果配置了镜像就去镜像查，否则就从你自己配置的仓库查。</li>
+</ol>
+<h4 id="4-2-1-远程仓库的认证"><a href="#4-2-1-远程仓库的认证" class="headerlink" title="4.2.1 远程仓库的认证"></a>4.2.1 远程仓库的认证</h4><p>大部分公共的远程仓库无须认证就可以直接访问，但我们在平时的开发中往往会架设自己的Maven远程仓库，出于安全方面的考虑，我们需要提供认证信息才能访问这样的远程仓库。配置认证信息和配置远程仓库不同，<strong>远程仓库可以直接在pom.xml中配置，但是认证信息必须配置在settings.xml文件中</strong>。这是因为pom往往是被提交到代码仓库中供所有成员访问的，而settings.xml一般只存在于本机。因此，在settings.xml中配置认证信息更为安全。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servers</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>releases<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">username</span>&gt;</span>pub_mvn_deploy<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">password</span>&gt;</span>mvn.Deploy<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servers</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码我们配置了一个id为releases的远程仓库认证信息。Maven使用settings.xml文件中的servers元素及其子元素server配置仓库认证信息。认证用户名为admin，认证密码为admin123。这里的关键是id元素，settings.xml中server元素的id必须与pom.xml中需要认证的repository元素的id完全一致。正是这个id将认证信息与仓库配置联系在了一起。</p>
+<h4 id="4-2-2-部署构建到远程仓库"><a href="#4-2-2-部署构建到远程仓库" class="headerlink" title="4.2.2 部署构建到远程仓库"></a>4.2.2 部署构建到远程仓库</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">distributionManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>releases<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>public<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://59.50.95.66:8081/nexus/content/repositories/releases<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>snapshots<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>Snapshots<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://59.50.95.66:8081/nexus/content/repositories/snapshots<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">distributionManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>distributionManagement包含repository和snapshotRepository子元素，前者表示发布版本（稳定版本）构件的仓库，后者表示快照版本（开发测试版本）的仓库。这两个元素都需要配置id、name和url，id为远程仓库的唯一标识，name是为了方便人阅读，关键的url表示该仓库的地址。往远程仓库部署构件的时候，往往需要认证，配置认证的方式同上。</p>
+<p>配置正确后，运行命令mvn clean deploy，Maven就会将项目构建输出的构件部署到配置对应的远程仓库，如果项目当前的版本是快照版本，则部署到快照版本的仓库地址，否则就部署到发布版本的仓库地址。</p>
+<h3 id="4-3-快照版本"><a href="#4-3-快照版本" class="headerlink" title="4.3 快照版本"></a>4.3 快照版本</h3><p>在Maven世界中版本分为发布版本和快照版本。1.0.0、1.3-alpha-4和2.0这种版本是稳定的发布版本。2.1-SNAPSHOT或者2.1–20091214-13这种版本是快照版本。<br>如果我们依赖一个版本为快照的依赖，这种情况下我们我们每次build的时候都会从远程仓库拉取这个依赖的最新版本。（远程仓库会给这个依赖维护一个时间戳，所以Maven能知道最新的版本）</p>
+<p>release（最新发布版本）、latest（最新版本）、snapshot这三种版本都是上面的策略。在我们平时使用时不建议使用release和latest版本，因为这些版本更新比较频繁，你的项目依赖了这些版本的Jar包，今天还能编译通过，明天可能就编译不过了。推荐使用稳定发布版本。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">releases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="4-4-从仓库解析依赖的机制"><a href="#4-4-从仓库解析依赖的机制" class="headerlink" title="4.4 从仓库解析依赖的机制"></a>4.4 从仓库解析依赖的机制</h3><p>。。。待完成</p>
+<h3 id="4-5-镜像"><a href="#4-5-镜像" class="headerlink" title="4.5 镜像"></a>4.5 镜像</h3><p>如果仓库X可以提供仓库Y存储的所有内容，那么就可以认为X是Y的一个镜像。关于镜像的一个更为常见的用法是结合私服。由于私服可以代理任何外部的公共仓库(包括中央仓库)，因此，对于组织内部的Maven用户来说，使用一个私服地址就等于使用了所有需要的外部仓库，这可以将配置集中到私服，从而简化Maven本身的配置。在这种情况下，任何需要的构件都可以从私服获得，私服就是所有仓库的镜像。这时，可以配置这样的一个镜像：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!--This sends everything else to /public --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.dev.xxxx.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br><span class="line">```        </span><br><span class="line">mirrorOf标签可以有多种配置方式：</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">！--</span> 匹配所有仓库 <span class="attr">--</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">！--</span> 匹配仓库<span class="attr">rep1</span>和<span class="attr">rep2</span> <span class="attr">--</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>rep1,rep2<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">！--</span> 匹配<span class="attr">rep1</span>之外的所有 <span class="attr">--</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*,！rep1<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">！--</span> 匹配不在本机上的远程仓库 <span class="attr">--</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>external:*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line"></span><br><span class="line">## 5. Maven生命周期和插件</span><br><span class="line">在Maven中，我们需要掌握的重要概念有**坐标、依赖、仓库、生命周期、插件**。这个章节我们讲解生命周期和插件的主题。</span><br><span class="line"></span><br><span class="line">Maven通过对大量项目构建过程的总结，抽象出了一套高度完善的项目构建的生命周期。整个生命周期包含**项目的清理、初始化、编译、测试、打包、集成测试、验证、部署、站点生成等几乎所有的过程**。Maven的整个生命周期是抽象的，这意味着整个生命周期本身不会干任何事情。在Maven项目的整个构建过程中，实际的构建任务都是由Maven插件完成的。Maven本身内置了很多插件，所以我们在项目进行编译、测试、打包的过程是没有感觉到。比如编译就是通过maven-compile-plugin实现的、测试是通过maven-surefire-plugin实现的。</span><br><span class="line"></span><br><span class="line">### 5.1 生命周期详解</span><br><span class="line">Maven拥有3套**独立的生命周期**：clean周期、default周期和site生命周期。clean周期的主要作用是清理项目，default周期的作用是构建项目，site周期的作用是生成项目站点。每个生命周期都若干个阶段，比如使用mvn clean命令，就是调用了clean生命周期的clean阶段。</span><br><span class="line"></span><br><span class="line">#### 5.1.1 clean生命周期</span><br><span class="line">Clean生命周期一共包含了三个阶段：</span><br><span class="line"></span><br><span class="line">- pre-clean：执行一些需要在clean之前完成的工作。</span><br><span class="line">- clean：移除所有上一次构建生成的文件。</span><br><span class="line">- post-clean：执行一些需要在clean之后立刻完成的工作。</span><br><span class="line"></span><br><span class="line">mvn clean中的clean就是上面的clean，在一个生命周期中，运行某个阶段的时候，它之前的所有阶段都会被运行，也就是说，mvn clean等同于 mvn pre-clean clean，如果我们运行 mvn post-clean，那么 pre-clean、clean 都会被运行。这是Maven很重要的一个规则，可以大大简化命令行的输入。但是执行clean生命周期的某个阶段，不会触发其他生命周期的阶段，因为Maven的每个生命周期都是相互独立的。</span><br><span class="line"></span><br><span class="line">#### 5.1.2 site生命周期</span><br><span class="line">下面看一下Site生命周期的各个阶段：</span><br><span class="line"></span><br><span class="line">- pre-site：执行一些需要在生成站点文档之前完成的工作。</span><br><span class="line">- site：生成项目的站点文档。</span><br><span class="line">- post-site：执行一些需要在生成站点文档之后完成的工作，并且为部署做准备。</span><br><span class="line">- site-deploy：将生成的站点文档部署到特定的服务器上。</span><br><span class="line"></span><br><span class="line">这里经常用到的是site阶段和site-deploy阶段，用以生成和发布Maven站点，这可是Maven相当强大的功能，Manager比较喜欢，文档及统计数据自动生成，很好看。</span><br><span class="line"></span><br><span class="line">#### 5.1.3 default生命周期</span><br><span class="line">最后，来看一下Maven的最重要的default生命周期，绝大部分工作都发生在这个生命周期中，这里我只解释一些比较重要和常用的阶段：</span><br><span class="line"></span><br><span class="line">- validate</span><br><span class="line">- initialize</span><br><span class="line">- generate-sources</span><br><span class="line">- process-sources：处理项目主资源文件，一般来说，是对src/main/resources目录的内容进行变量替换等工作后，复制到项目输出的主classpath目录中；  </span><br><span class="line">- generate-resources</span><br><span class="line">- process-resources</span><br><span class="line">- compile 编译项目的源代码，一般来说，是编译src/main/java目录下的Java文件至项目输出的主classpath目录中。</span><br><span class="line">- process-classes</span><br><span class="line">- generate-test-sources </span><br><span class="line">- process-test-sources：处理项目测试资源文件，一般来说，是对src/test/resources目录的内容进行变量替换等工作后，复制到项目输出的测试classpath目录中。</span><br><span class="line">- generate-test-resources</span><br><span class="line">- process-test-resources    </span><br><span class="line">- test-compile：编译项目的测试源代码，一般来说，是编译src/test/java目录下的Java文件至项目输出的测试classpath目录中。</span><br><span class="line">- process-test-classes</span><br><span class="line">- test：使用合适的单元测试框架运行测试。这些测试代码不会被打包或部署。</span><br><span class="line">- prepare-package</span><br><span class="line">- package：接受编译好的代码，打包成可发布的格式，如 JAR 。</span><br><span class="line">- pre-integration-test</span><br><span class="line">- integration-test</span><br><span class="line">- post-integration-test</span><br><span class="line">- verify</span><br><span class="line">- install：将包安装至本地仓库，以让其它项目依赖。</span><br><span class="line">- deploy：将最终的包复制到远程的仓库，以让其它开发人员与Maven项目使用。</span><br><span class="line"> </span><br><span class="line">基本上，根据名称我们就能猜出每个阶段的用途，关于阶段的详细解释以及其她阶段的解释，请参考 http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html 。</span><br><span class="line"></span><br><span class="line">#### 5.1.4 命令行和生命周期</span><br><span class="line"></span><br><span class="line">    mvn clean install site-deploy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 5.2 插件详解</span><br><span class="line">这边先理解一个重要的概念：插件目标（goal）。每个插件的单个功能就可以理解为是一个插件的目标。举个例子，maven-dependency-plugin这个插件可以分析项目的依赖树、可以分析潜在无用的依赖，这一个个功能我们就可以理解为插件的goal。</span><br><span class="line"></span><br><span class="line">#### 5.2.1 默认插件绑定</span><br><span class="line">Maven生命周期的某个阶段会和插件的某个goal绑定来完成某个特定的任务。Maven已经在生命周期的某个阶段默认绑定了一些goal，让用户可以直接使用。</span><br><span class="line"></span><br><span class="line">表格:clean生命周期绑定的插件</span><br><span class="line">| 生命周期阶段 | 插件目标 |</span><br><span class="line">|------------|----------|</span><br><span class="line">| pre-clean  |    -     |</span><br><span class="line">| clean | maven-clean-plugin:clean|</span><br><span class="line">| post-clean |   -       |</span><br><span class="line"></span><br><span class="line">表格:site生命周期绑定的插件目标</span><br><span class="line">| 生命周期阶段 | 插件目标 |</span><br><span class="line">|------------|----------|</span><br><span class="line">| pre-site  |    -     |</span><br><span class="line">| site | maven-site-plugin:site|</span><br><span class="line">| post-site |   -       |</span><br><span class="line">| site-deploy  | maven-site-plugin:deploy |</span><br><span class="line"></span><br><span class="line">表格：default生命周期绑定的插件目标</span><br><span class="line">| 生命周期阶段 | 插件目标 | 执行的任务 |</span><br><span class="line">|------------|----------|-----------|</span><br><span class="line">| process-resources  |  maven-resources-plugin:resources  |复制主资源文件到主输出目录 |</span><br><span class="line">| compile | maven-compiler-plugin:compile| 编译主代码到主输出目录 |</span><br><span class="line">| process-test-resources |  maven-resources-plugin:testResources  | -|</span><br><span class="line">| test-compile  | maven-compiler-plugin:testCompile | - |</span><br><span class="line">| test    | maven-surefire-plugin:test |  执行测试用例 |</span><br><span class="line">| package | maven-jar-plugin：jar | 项目打包（如果打成war包的话会绑定其他插件） |</span><br><span class="line">| install | maven-install-plugin:install | 安装到本地仓库 |</span><br><span class="line">| deploy | maven-deploy-plugin | 项目部署 |</span><br><span class="line"></span><br><span class="line">上表只是列出了拥有插件绑定关系的阶段，default生命周期还有很多其他阶段，默认他们没有绑定任何插件，因此这些阶段没有任何实际行为。</span><br><span class="line"></span><br><span class="line">**除了默认的打包类型jar之外，常见的打包类型还有war、pom、maven-plugin和ear等。**</span><br><span class="line"></span><br><span class="line">#### 5.2.2 自定义插件绑定</span><br><span class="line">除了内置的绑定之外，用户还能自己选择将某个插件的目标绑定到生命周期的某个阶段上。这种自定义的绑定方式能让Maven执行更多功能。下面是一个插件配置的列子：</span><br><span class="line">```xml</span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">			    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-source-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">				 <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">				  <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">				   <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">goal</span>&gt;</span>jar-no-fork<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">				   <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">				   <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">				  <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">				 <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在上面的列子中我们将&gt;maven-source-plugin插件的jar-no-fork目标绑定到了default周期的package阶段。所以在执行到package阶段的时候jar-no-fork会被调用。有时候我们会发现我们没配置任何phase，插件的目标也能被调用。这是因为插件已经为目标默认绑定到生命周期的某个阶段上了。使用下面的命令可以查看某个目标绑定到了哪个阶段上<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mvn <span class="built_in">help</span>:describe -Dplugin=org.apache.maven.plugins:maven-dependency-plugin -Ddetail</span><br><span class="line">   mvn <span class="built_in">help</span>:describe -Dplugin=dependency -Ddetail</span><br></pre></td></tr></table></figure></p>
+<p>插件仓库和依赖的仓库不是公用的，需要我们另外配置。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://central<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">releases</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="6-Maven聚合和继承"><a href="#6-Maven聚合和继承" class="headerlink" title="6. Maven聚合和继承"></a>6. Maven聚合和继承</h2><h3 id="6-1-聚合"><a href="#6-1-聚合" class="headerlink" title="6.1 聚合"></a>6.1 聚合</h3><p>聚合最主要的表现形式是使用modle标签来管理多个子模块的构建：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">module</span>&gt;</span>spring-boot-quickstart<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">module</span>&gt;</span>spring-boot-web<span class="tag">&lt;/<span class="name">module</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="6-2-继承"><a href="#6-2-继承" class="headerlink" title="6.2 继承"></a>6.2 继承</h3><p>如果多个模块出现相同的依赖包，这样在pom.xml文件的内容出现了冗余、重复的内容，解决这个问题其实使用Maven的继承机制即可，就像Java的继承一样，父类就像一个模板，子类继承自父类，那么有些通用的方法、变量都不必在子类中再重复声明了。Maven的继承机制类似，在一个父级别的Maven的pom文件中定义了相关的常量、依赖、插件等等配置后，实际项目模块可以继承此父项目 的pom文件，重复的项不必显示的再声明一遍了，相当于父Maven项目就是个模板，等着其他子模块去继承。不过父Maven项目要高度抽象，高度提取公共的部分（交集），做到一处声明，多处使用。</p>
+<p>可继承的POM元素：<br>groupId和version是可以被继承的，那么还有哪些POM元素可以被继承呢？以下是一个完整的列表，并附带了简单的说明：</p>
+<ul>
+<li>groupId：项目组 ID，项目坐标的核心元素；</li>
+<li>version：项目版本，项目坐标的核心元素；</li>
+<li>description：项目的描述信息；</li>
+<li>organization：项目的组织信息；</li>
+<li>inceptionYear：项目的创始年份；</li>
+<li>url：项目的 url 地址；</li>
+<li>develoers：项目的开发者信息；</li>
+<li>contributors：项目的贡献者信息；</li>
+<li>distributionManagerment：项目的部署信息；</li>
+<li>issueManagement：缺陷跟踪系统信息；</li>
+<li>ciManagement：项目的持续继承信息；</li>
+<li>scm：项目的版本控制信息；</li>
+<li>mailingListserv：项目的邮件列表信息；</li>
+<li><strong>properties</strong>：自定义的 Maven 属性；</li>
+<li><strong>dependencies</strong>：项目的依赖配置；</li>
+<li><strong>dependencyManagement</strong>：醒目的依赖管理配置；</li>
+<li><strong>repositories</strong>：项目的仓库配置；</li>
+<li><strong>build</strong>：包括项目的源码目录配置、输出目录配置、插件配置、插件管理配置等；</li>
+<li>reporting：包括项目的报告输出目录配置、报告插件配置等。</li>
+</ul>
+<h3 id="6-3-插件管理"><a href="#6-3-插件管理" class="headerlink" title="6.3 插件管理"></a>6.3 插件管理</h3><p>和依赖管理（dependencyManagement）的理念相同，我们可以在父pom中配置插件管理。这样子模块就可以继承父模块的插件。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            </span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="7-Nexus创建私服"><a href="#7-Nexus创建私服" class="headerlink" title="7. Nexus创建私服"></a>7. Nexus创建私服</h2><p>私服是一种特殊的Maven远程仓库。Nexus分为免费版和专业版。安装包分为附带web容器的Bundle版本，和不带web容器的war包版本。</p>
+<h3 id="7-1-Nexus仓库类型"><a href="#7-1-Nexus仓库类型" class="headerlink" title="7.1 Nexus仓库类型"></a>7.1 Nexus仓库类型</h3><p>仓库有四种类型： </p>
+<ul>
+<li>group（仓库组） ：没有实际的内容，就是将若干个其他仓库组合成一个组，在这种类型的仓库中下载依赖的时候，Maven会从这个组中包含的仓库依次轮询，知道下载到依赖为止；</li>
+<li>hosted（宿主） ：建在Nexus一台机器上的本地Maven仓库；</li>
+<li>proxy（代理） ：是一个代理，代理了其他远程仓库，比如Maven的central仓库；</li>
+<li>virtual（虚拟）：兼容Maven1 版本的jar或者插件。</li>
+</ul>
+<p>每个仓库的格式为maven2或者maven1。此外，仓库还有一个属性为Policy（策略），表示该仓库为发布（Release）版本仓库还是快照（Snapshot）版本仓库。最后两列的值为仓库的状态和路径。</p>
+<ul>
+<li>Maven Central：该仓库代理Maven中央仓库，其策略为Release，因此只会下载和缓存中央仓库中的发布版本构件。</li>
+<li>Releases：这是一个策略为Release的宿主类型仓库，用来部署组织内部的发布版本构件。</li>
+<li>Snapshots：这是一个策略为Snapshot的宿主类型仓库，用来部署组织内部的快照版本构件。</li>
+<li>3rd party：这是一个策略为Release的宿主类型仓库，用来部署无法从公共仓库获得的第三方发布版本构件。</li>
+<li>Apache Snapshots：这是一个策略为Snapshot的代理仓库，用来代理Apache Maven仓库的快照版本构件。</li>
+<li>Codehaus Snapshots：这是一个策略为Snapshot的代理仓库，用来代理Codehaus Maven仓库的快照版本构件。</li>
+<li>Google Code：这是一个策略为Release的代理仓库，用来代理Google Code Maven仓库的发布版本构件。</li>
+<li>java.net-Maven 2：这是一个策略为Release的代理仓库，用来代理java.net Maven仓库的发布版本构件。</li>
+<li><strong>Public Repositories：该仓库组将上述所有策略为Release的仓库聚合并通过一致的地址提供服务。</strong></li>
+<li>Public Snapshot Repositories：该仓库组将上述所有策略为Snapshot的仓库聚合并通过一致的地址提供服务。</li>
+</ul>
+<p><img src="http://img.blog.csdn.net/20170521190802328?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTF9TYWls/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="图片地址"></p>
+<h3 id="7-2-配置Nexus仓库"><a href="#7-2-配置Nexus仓库" class="headerlink" title="7.2 配置Nexus仓库"></a>7.2 配置Nexus仓库</h3><ol>
+<li>在POM中配置仓库<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">project</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">repositories</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-net-cn<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Maven China Mirror<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.net.cn/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">releases</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">releases</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-net-cn<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Maven China Mirror<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.net.cn/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">releases</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">releases</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span>      </span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这种配置方式只会对当前项目生效，如果想对所有项目生效，可以在settings文件中配置。</p>
+<ol start="2">
+<li><p>在Settings.xml中配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span>  </span><br><span class="line">  ...  </span><br><span class="line">  <span class="tag">&lt;<span class="name">profiles</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>Nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">      <span class="comment">&lt;!-- repositories and pluginRepositories here--&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>Nexus<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span>  </span><br><span class="line">  ...  </span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用镜像<br>如果你的地理位置附近有一个速度更快的central镜像，或者你想覆盖central仓库配置，或者你想为所有POM使用唯一的一个远程仓库（这个远程仓库代理的所有必要的其它仓库）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">settings</span>&gt;</span>  </span><br><span class="line">...  </span><br><span class="line">  <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-net-cn<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Maven China Mirror<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.net.cn/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span>  </span><br><span class="line">...  </span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="7-3-部署构建到Nexus"><a href="#7-3-部署构建到Nexus" class="headerlink" title="7.3 部署构建到Nexus"></a>7.3 部署构建到Nexus</h3><p>…</p>
+<h2 id="8-Maven测试"><a href="#8-Maven测试" class="headerlink" title="8. Maven测试"></a>8. Maven测试</h2><p>Maven的测试插件会自动执行src/test/java/下面的</p>
+<ul>
+<li>*<em>/Test</em>.java；</li>
+<li>*<em>/</em>Test.java;</li>
+<li>*<em>/</em>TestCase.java</li>
+</ul>
+<p>以上形式的类。</p>
+<h3 id="8-1-跳过测试"><a href="#8-1-跳过测试" class="headerlink" title="8.1 跳过测试"></a>8.1 跳过测试</h3><pre><code>mvn clean install -DskipTests
+
+&lt;properties&gt;
+    &lt;skipTests&gt;true&lt;/skipTests&gt;
+&lt;/properties&gt;
+</code></pre><h3 id="8-2-指定运行某个测试用例"><a href="#8-2-指定运行某个测试用例" class="headerlink" title="8.2 指定运行某个测试用例"></a>8.2 指定运行某个测试用例</h3><pre><code>mvn test -Dtest=Random1Test，Random2Test
+mvn test -Dtest=Random*Test
+</code></pre><h3 id="8-3-排除测试"><a href="#8-3-排除测试" class="headerlink" title="8.3 排除测试"></a>8.3 排除测试</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0-M3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*Tests.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">includes</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/TestCircle.java<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/TestSquare.java<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="9-持续集成"><a href="#9-持续集成" class="headerlink" title="9. 持续集成"></a>9. 持续集成</h2><p>Hudson+Maven+git版本控制–&gt;持续集成</p>
+<h2 id="10-构建Web项目"><a href="#10-构建Web项目" class="headerlink" title="10. 构建Web项目"></a>10. 构建Web项目</h2><p>使用Cargo可以进行远程Web应用部署…</p>
+<h2 id="11-Maven版本管理"><a href="#11-Maven版本管理" class="headerlink" title="11. Maven版本管理"></a>11. Maven版本管理</h2><p>Maven的版本管理一般会遵循：</p>
+<pre><code>&lt;主版本&gt;.&lt;次版本&gt;.&lt;增量版本&gt;-&lt;里程碑版本&gt;
+</code></pre><ul>
+<li>主版本号：表示项目架构有重大的变更;</li>
+<li>次版本号：较大范围的功能增加和变化，以及Bug修复，但总体项目架构没什么变化；</li>
+<li>增量版本：一般表示重大Bug修复，例如1.4.0发布后发现一个重大Bug，发现一个重大Bug修复后发布1.4.1；</li>
+<li><p>里程碑版本：SNAPSHOT–&gt;alpha–&gt;beta–&gt;release–&gt;GA</p>
+<p> SNAPSHOT：正在开发中的版本<br> Alpha: 内部测试的版本（项目组内部测试）<br> Beta：用户下载下来测试使用<br> Release: 用户使用下来没什么问题就可以发布Release版本<br> GA：稳定版本</p>
+</li>
+</ul>
+<h3 id="11-1-GPG签名"><a href="#11-1-GPG签名" class="headerlink" title="11.1 GPG签名"></a>11.1 GPG签名</h3><p>使用GPG签名来校验依赖包有没被第三方恶意篡改</p>
+<h2 id="12-灵活的构建"><a href="#12-灵活的构建" class="headerlink" title="12. 灵活的构建"></a>12. 灵活的构建</h2><h3 id="12-1-Maven属性"><a href="#12-1-Maven属性" class="headerlink" title="12.1 Maven属性"></a>12.1 Maven属性</h3><p>Maven中有6中基本属性：</p>
+<ol>
+<li><p>内置属性<br>主要有两个常用内置属性——${basedir}表示项目根目录，即包含pom.xml文件的目录;${version}表示项目版本。</p>
+</li>
+<li><p>POM属性<br>pom中对应元素的值，例如${project.artifactId}对应了<project><artifactid>元素的值，常用的POM属性包括：</artifactid></project></p>
+</li>
+</ol>
+<ul>
+<li>${project.build.sourceDirectory}:项目的主源码目录，默认为src/main/java/；</li>
+<li>${project.build.testSourceDirectory}:项目的测试源码目录，默认为/src/test/java/；</li>
+<li>${project.build.directory}:项目构建输出目录，默认为target/；</li>
+<li>${project.build.outputDirectory}:项目主代码编译输出目录，默认为target/classes/；</li>
+<li>${project.build.testOutputDirectory}:项目测试代码编译输出目录，默认为target/testclasses/；</li>
+<li>${project.groupId}:项目的groupId；</li>
+<li>${project.artifactId}:项目的artifactId；</li>
+<li>${project.version}:项目的version,于${version}等价；</li>
+<li>${project.build.finalName}:项目打包输出文件的名称，默认为${project.artifactId}${project.version}.</li>
+</ul>
+<ol start="3">
+<li><p>自定义属性<br>在pom中<properties>元素下自定义的Maven属性。</properties></p>
+</li>
+<li><p>Settings属性<br>与POM属性同理。如${settings.localRepository}指向用户本地仓库的地址。</p>
+</li>
+<li><p>Java系统属性<br>所有Java系统属性都可以使用Maven属性引用，例如${user.home}指向了用户目录。可以通过命令行mvn help:system查看所有的Java系统属性</p>
+</li>
+<li><p>环境变量属性<br>所有环境变量都可以使用以env.开头的Maven属性引用。例如${env.JAVA_HOME}指代了JAVA_HOME环境变量的值。也可以通过命令行mvn help:system查看所有环境变量。</p>
+</li>
+</ol>
+<h3 id="12-2-资源过滤"><a href="#12-2-资源过滤" class="headerlink" title="12.2 资源过滤"></a>12.2 资源过滤</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">filtering</span>&gt;</span>true<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>**/config/*.*<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/resources/config<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">filtering</span>&gt;</span>true<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">include</span>&gt;</span>application-$&#123;profiles.active&#125;.yml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="12-3-Maven-profile"><a href="#12-3-Maven-profile" class="headerlink" title="12.3 Maven profile"></a>12.3 Maven profile</h3><h4 id="12-3-1-针对不同环境profile"><a href="#12-3-1-针对不同环境profile" class="headerlink" title="12.3.1 针对不同环境profile"></a>12.3.1 针对不同环境profile</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"> <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">id</span>&gt;</span>dev<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">profiles.active</span>&gt;</span>dev<span class="tag">&lt;/<span class="name">profiles.active</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 这边可以配置各种激活条件 -- &gt;</span></span><br><span class="line"><span class="comment">             &lt;property&gt;</span></span><br><span class="line"><span class="comment">                 &lt;name&gt;&lt;/name&gt;</span></span><br><span class="line"><span class="comment">                 &lt;value&gt;&lt;/value&gt;</span></span><br><span class="line"><span class="comment">             &lt;/property&gt;</span></span><br><span class="line"><span class="comment">             &lt;file&gt;</span></span><br><span class="line"><span class="comment">                 &lt;exists&gt;&lt;/exists&gt;</span></span><br><span class="line"><span class="comment">             &lt;/file&gt;</span></span><br><span class="line"><span class="comment">             &lt;os&gt;</span></span><br><span class="line"><span class="comment">                 ...</span></span><br><span class="line"><span class="comment">             &lt;/os&gt;</span></span><br><span class="line"><span class="comment">             &lt;jdk&gt;</span></span><br><span class="line"><span class="comment">                 ...</span></span><br><span class="line"><span class="comment">             &lt;/jdk&gt;</span></span><br><span class="line"><span class="comment">             &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</span></span><br><span class="line"><span class="comment">            &lt;/activation&gt;</span></span><br><span class="line"><span class="comment">     &lt;/profile&gt;</span></span><br><span class="line"><span class="comment">     &lt;profile&gt;</span></span><br><span class="line"><span class="comment">         &lt;id&gt;stg&lt;/id&gt;</span></span><br><span class="line"><span class="comment">         &lt;properties&gt;</span></span><br><span class="line"><span class="comment">             &lt;profiles.active&gt;stg&lt;/profiles.active&gt;</span></span><br><span class="line"><span class="comment">         &lt;/properties&gt;</span></span><br><span class="line"><span class="comment">     &lt;/profile&gt;</span></span><br><span class="line"><span class="comment">     &lt;profile&gt;</span></span><br><span class="line"><span class="comment">         &lt;id&gt;prod&lt;/id&gt;</span></span><br><span class="line"><span class="comment">         &lt;properties&gt;</span></span><br><span class="line"><span class="comment">             &lt;profiles.active&gt;prod&lt;/profiles.active&gt;</span></span><br><span class="line"><span class="comment">         &lt;/properties&gt;</span></span><br><span class="line"><span class="comment">     &lt;/profile&gt;</span></span><br><span class="line"><span class="comment">    &lt;/profiles&gt;</span></span><br><span class="line"><span class="comment">    ...</span></span><br><span class="line"><span class="comment">&lt;/project&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="12-3-2-激活profile"><a href="#12-3-2-激活profile" class="headerlink" title="12.3.2 激活profile"></a>12.3.2 激活profile</h4><ol>
+<li><p>命令行激活</p>
+<p> mvn clean install -Pdev</p>
+</li>
+<li><p>settings文件显示激活<br>如果你希望某个profile一直处于激活状态，可以直接在settings文件中配置:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://central<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">releases</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://central<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">releases</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--make the profile active all the time --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="12-3-3-Web项目打包"><a href="#12-3-3-Web项目打包" class="headerlink" title="12.3.3 Web项目打包"></a>12.3.3 Web项目打包</h4><p>…</p>
+<h2 id="13-项目站点生成"><a href="#13-项目站点生成" class="headerlink" title="13. 项目站点生成"></a>13. 项目站点生成</h2><p>…后续完成…</p>
+<h2 id="14-编写Mavem插件"><a href="#14-编写Mavem插件" class="headerlink" title="14. 编写Mavem插件"></a>14. 编写Mavem插件</h2><p>…后续完成…</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="A-常用命令"><a href="#A-常用命令" class="headerlink" title="A. 常用命令"></a>A. 常用命令</h3><p>下面我们总结下Maven中常用的命令。</p>
+<ul>
+<li>mvn help:system 调用help这个插件，打印出jvm的系统属性和操作系统的环境变量</li>
+<li>mvn help:describe -Dplugin=org.apache.maven.plugins:maven-dependency-plugin -Ddetail</li>
+<li><p>mvn archetype：generate 这个命令可以帮助我们生成一个Maven项目的骨架   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">|--Pom.xml  </span><br><span class="line">  |--src  </span><br><span class="line">      |--main</span><br><span class="line">            |--java</span><br><span class="line">            |--resource</span><br><span class="line">      |--test</span><br><span class="line">            |--java</span><br><span class="line">            |--resource</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mvn dependency:list</p>
+</li>
+<li>mvn denpedency:tree</li>
+<li>mvn dependency:analyze 可以分析当前项目依赖的问题</li>
+<li>mvn clean install -DskipTests</li>
+<li>mvn clean deploy 编译打包并发布到远程仓库</li>
+<li>mvn clean install site</li>
+</ul>
+<h3 id="B-POM文件总结"><a href="#B-POM文件总结" class="headerlink" title="B. POM文件总结"></a>B. POM文件总结</h3><pre><code>  元素名称                             简   介
+&lt;project&gt;                         POM的xml根元素
+&lt;parent&gt;                          声明继承
+&lt;modules&gt;                         声明聚合
+&lt;groupId&gt;                         坐标元素之一
+&lt;artifactId&gt;                      坐标元素之一
+&lt;version&gt;                         坐标元素之一
+&lt;packaging&gt;                       坐标元素之一，默认值jar
+&lt;name&gt;                            名称
+&lt;description&gt;                     描述
+&lt;organization&gt;                    所属组织
+&lt;licenses&gt;&lt;license&gt;               许可证
+&lt;mailingLists&gt;&lt;mailingList&gt;       邮件列表
+&lt;developers&gt;&lt;developer&gt;           开发者
+&lt;contributors&gt;&lt;contributor&gt;       贡献者
+&lt;issueManagement&gt;                 问题追踪系统
+&lt;ciManagement&gt;                    持续集成系统
+&lt;scm&gt;                             版本控制系统
+&lt;prerequisites&gt;&lt;maven&gt;            要求Maven最低版本，默认值为2.0
+&lt;build&gt;&lt;sourceDirectory&gt;          主源码目录
+&lt;build&gt;&lt;scriptSourceDirectory&gt;    脚本源码目录
+&lt;build&gt;&lt;testSourceDirectory&gt;      测试源码目录
+&lt;build&gt;&lt;outputDirectory&gt;          主源码输出目录
+&lt;build&gt;&lt;testOutputDirectory&gt;      测试源码输出目录
+&lt;build&gt;&lt;resources&gt;&lt;resource&gt;      主资源目录
+&lt;build&gt;&lt;testResources&gt;&lt;testResource&gt; 测试资源目录
+&lt;build&gt;&lt;finalName&gt;                输出主构件的名称
+&lt;build&gt;&lt;directory&gt;                输出目录
+&lt;build&gt;&lt;filters&gt;&lt;filter&gt;          通过properties文件定义资源过滤属性
+&lt;build&gt;&lt;extensions&gt;&lt;extension&gt;    扩展Maven的核心
+&lt;build&gt;&lt;pluginManagement&gt;         插件管理
+&lt;build&gt;&lt;plugins&gt;&lt;plugin&gt;          插件
+&lt;profiles&gt;&lt;profile&gt;               POM Profile
+&lt;distributionManagement&gt;&lt;repository&gt;  发布版本部署仓库       
+&lt;distributionManagement&gt; &lt;snapshotRepository&gt; 快照版本部署仓库       
+&lt;distributionManagement&gt; &lt;site&gt;   站点部署
+&lt;repositories&gt;&lt;repository&gt;        仓库
+&lt;pluginRepositories&gt;&lt;pluginRepository&gt;   插件仓库
+&lt;dependencies&gt;&lt;dependency&gt;        依赖                      
+&lt;dependencyManagement&gt;            依赖管理
+&lt;properties&gt;                      Maven属性
+&lt;reporting&gt;&lt;plugins&gt;              报告插件
+</code></pre><h3 id="C-settings文件例子"><a href="#C-settings文件例子" class="headerlink" title="C. settings文件例子"></a>C. settings文件例子</h3><pre><code>&lt;settings&gt;
+&lt;localRepository&gt;D:\software\maven\Repository&lt;/localRepository&gt;
+&lt;proxies&gt;
+&lt;proxy&gt;
+    &lt;id&gt;optional&lt;/id&gt;
+    &lt;active&gt;true&lt;/active&gt;
+    &lt;protocol&gt;http&lt;/protocol&gt;
+    &lt;host&gt;10.47.22.247&lt;/host&gt;
+    &lt;port&gt;80&lt;/port&gt;
+    &lt;nonProxyHosts&gt;some.host.com&lt;/nonProxyHosts&gt;
+&lt;/proxy&gt;
+&lt;/proxies&gt;
+&lt;servers&gt;
+&lt;server&gt;
+    &lt;id&gt;releases&lt;/id&gt;
+    &lt;username&gt;pub_mvn_deploy&lt;/username&gt;
+    &lt;password&gt;mvn.Deploy&lt;/password&gt;
+&lt;/server&gt;
+&lt;server&gt;
+    &lt;id&gt;snapshots&lt;/id&gt;
+    &lt;username&gt;pub_mvn_deploy&lt;/username&gt;
+    &lt;password&gt;mvn.Deploy&lt;/password&gt;
+&lt;/server&gt;
+&lt;server&gt;
+    &lt;id&gt;nexus&lt;/id&gt;
+    &lt;username&gt;pub_mvn_deploy&lt;/username&gt;
+    &lt;password&gt;mvn.Deploy&lt;/password&gt;
+&lt;/server&gt;
+&lt;/servers&gt;
+
+&lt;mirrors&gt;
+&lt;mirror&gt;
+    &lt;id&gt;nexus&lt;/id&gt;
+    &lt;mirrorOf&gt;*&lt;/mirrorOf&gt;
+    &lt;url&gt;http://maven.dev.xxx.com/nexus/content/groups/public&lt;/url&gt;
+&lt;/mirror&gt;
+&lt;/mirrors&gt;
+
+&lt;profiles&gt;
+&lt;profile&gt;
+    &lt;id&gt;nexus&lt;/id&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;central&lt;/id&gt;
+            &lt;url&gt;http://central&lt;/url&gt;
+            &lt;releases&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/releases&gt;
+            &lt;snapshots&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/snapshots&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+    &lt;pluginRepositories&gt;
+        &lt;pluginRepository&gt;
+            &lt;id&gt;central&lt;/id&gt;
+            &lt;url&gt;http://central&lt;/url&gt;
+            &lt;releases&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/releases&gt;
+            &lt;snapshots&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/snapshots&gt;
+        &lt;/pluginRepository&gt;
+    &lt;/pluginRepositories&gt;
+&lt;/profile&gt;
+&lt;!-- if you want to be able to switch to the defaultprofile profile put this in the active profile --&gt;
+&lt;profile&gt;
+    &lt;id&gt;defaultprofile&lt;/id&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;maven.default&lt;/id&gt;
+            &lt;name&gt;default maven repository&lt;/name&gt;
+            &lt;url&gt;http://repo1.maven.org/maven2&lt;/url&gt;
+            &lt;snapshots&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/snapshots&gt;
+        &lt;/repository&gt;
+        &lt;repository&gt;
+            &lt;id&gt;maven.snapshot&lt;/id&gt;
+            &lt;name&gt;Maven snapshot repository&lt;/name&gt;
+            &lt;url&gt;http://people.apache.org/repo/m2-snapshot-repository&lt;/url&gt;
+            &lt;snapshots&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/snapshots&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+&lt;/profile&gt;
+&lt;/profiles&gt;
+&lt;activeProfiles&gt;
+&lt;!--make the profile active all the time --&gt;
+&lt;activeProfile&gt;nexus&lt;/activeProfile&gt;
+&lt;/activeProfiles&gt;
+&lt;/settings&gt;
+</code></pre><h3 id="D-settings文件元素参考表"><a href="#D-settings文件元素参考表" class="headerlink" title="D. settings文件元素参考表"></a>D. settings文件元素参考表</h3><pre><code>1，&lt;settings&gt;，settings.xml文档的根元素
+
+2，&lt;localRepository&gt;，本地仓库
+
+3，&lt;interactiveMode&gt;，Maven是否与用户交互，默认值true
+
+4，&lt;offline&gt;，离线模式，默认值false
+
+5，&lt;pluginGroups&gt;  &lt;pluginGroup&gt;，插件组
+
+6，&lt;servers&gt;  &lt;server&gt;，下载与部署仓库的认证信息
+
+7，&lt;mirrors&gt;  &lt;mirror&gt;，仓库镜像
+
+8，&lt;proxies&gt;  &lt;proxy&gt;，代理
+
+9，&lt;profiles&gt;  &lt;profile&gt;，Settings Profile
+
+10，&lt;activeProfiles&gt;  &lt;activeProfile&gt;，激活Profile
+</code></pre><h3 id="E-常用插件总结"><a href="#E-常用插件总结" class="headerlink" title="E. 常用插件总结"></a>E. 常用插件总结</h3><pre><code>插件名称                    用途                    来源
+maven-clean-plugin       清理项目              Apache
+maven-compiler-plugin    编译项目              Apache
+maven-deploy-plugin        部署项目              Apache
+maven-install-plugin        安装项目              Apache
+maven-resources-plugin    处理资源文件          Apache
+maven-site-plugin        生成站点              Apache
+maven-surefire-plugin    执行测试              Apache
+maven-jar-plugin            构建jar项目          Apache
+maven-war-plugin         构建war项目          Apache
+maven-shade-plugin    构建包含依赖的jar包      Apache
+maven-changelog-plugin    生成版本控制变更报告    Apache
+maven-checkstyle-plugin    生成CheckStyle报告   Apache
+maven-javadoc-plugin      生成javadoc文档       Apache
+maven-jxr-plugin          生成源码交叉引用文档       Apache
+maven-pmd-plugin          生成pmd报告           Apache
+maven-project-info-reports-plugin    生成项目信息报告    Apache
+maven-surefire-report-plugin     生成单元测试报告    Apache
+maven-antrun-plugin        调用Ant任务            Apache
+maven-archetype-plugin    基于Archetype生成项目骨架    Apache
+maven-assembly-plugin    构建自定义格式的分发包        Apache
+maven-dependency-plugin    依赖分析及控制            Apache
+maven-enforcer-plugin    定义规则并强制要求项目遵守    Apache
+maven-pgp-plugin          为项目构件生成pgp签名        Apache
+maven-help-plugin      获取项目及Maven环境的信息    Apache
+maven-invoker-plugin      自动运行Maven项目构建并验证    Apache
+maven-release-plugin  自动化项目版本发布            Apache
+maven-scm-plugin          集成版本控制系统           Apache
+maven-source-plugin      生成源码包                   Apache
+maven-eclipse-plugin  生成eclipse项目环境配置      Apache
+build-helper-maven-plugin 包含各种支持构建生命周期的目标 Codehaus
+exec-maven-plugin      运行系统程序或者java程序      Codehaus
+jboss-maven-plugin     启动、停止jboss、部署项目      Codehaus
+properties-maven-plugin    从properties文件读写Maven属性    Codehaus
+sql-maven-plugin         运行sql脚本                    Codehaus
+tomcat-maven-plugin     启动、停止tomcat、部署项目    Codehaus
+versions-maven-plugin    自动化批量更新pom版本       Codehaus
+cargo-maven-plugin     启动/停止/配置各类web容器自动化部署web项目    Cargo
+jetty-maven-plugin    集成jetty容器、实现快速开发测试         Eclipse
+mave-gae-plugin        集成google app engine        Googlecode
+maven-license-plugin     自动化添加许可证证明至源码文件    Googlecode
+maven-andmid-plugin     构建Android项目                Googlecode
+</code></pre><h3 id="F-超级POM"><a href="#F-超级POM" class="headerlink" title="F. 超级POM"></a>F. 超级POM</h3><p>这个POM会被每个POM继承。它的定义在model-builder.jar这个包下面。我们解压就可以看到。 </p>
+<h3 id="G-图片工具"><a href="#G-图片工具" class="headerlink" title="G. 图片工具"></a>G. 图片工具</h3><p><a href="http://techsmith.com/jing这个网站提供了一个不错的制图工具，有时间可以研究下。" target="_blank" rel="noopener">http://techsmith.com/jing这个网站提供了一个不错的制图工具，有时间可以研究下。</a></p>
+<h3 id="H-参考书籍"><a href="#H-参考书籍" class="headerlink" title="H. 参考书籍"></a>H. 参考书籍</h3><ol>
+<li>《Maven实战》</li>
+<li>《Maven权威指南》</li>
+</ol>
+<h3 id="I-Maven和gradle的对比"><a href="#I-Maven和gradle的对比" class="headerlink" title="I. Maven和gradle的对比"></a>I. Maven和gradle的对比</h3><ul>
+<li><a href="https://www.cnblogs.com/huang0925/p/5209563.html" target="_blank" rel="noopener">https://www.cnblogs.com/huang0925/p/5209563.html</a></li>
+<li><a href="http://blog.csdn.net/xad707348125/article/details/46891941" target="_blank" rel="noopener">http://blog.csdn.net/xad707348125/article/details/46891941</a></li>
+<li><a href="https://maven.apache.org/settings.html" target="_blank" rel="noopener">https://maven.apache.org/settings.html</a> (Maven官网)</li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2019/03/09/Maven学习笔记/" data-id="cjt1kd9a9000e6o3dkbufxfea" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/03/09/谈谈Java中的时间API/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">谈谈Java中的时间API</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Chrome/" style="font-size: 15px; color: #32cd14">Chrome</a> <a href="/tags/Collection/" style="font-size: 16.67px; color: #32cd14">Collection</a> <a href="/tags/IDEA/" style="font-size: 15px; color: #32cd14">IDEA</a> <a href="/tags/Java基础/" style="font-size: 20px; color: #32cd14">Java基础</a> <a href="/tags/Maven/" style="font-size: 15px; color: #32cd14">Maven</a> <a href="/tags/个人成长/" style="font-size: 15px; color: #32cd14">个人成长</a> <a href="/tags/工具/" style="font-size: 18.33px; color: #32cd14">工具</a> <a href="/tags/年度计划/" style="font-size: 15px; color: #32cd14">年度计划</a>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2019 songxia<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
