@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>谈谈面向对象的基础知识 | 写代码的木公</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="本篇文章记录下面向对象的概念知识。  1. 什么是面向对象面向对象是一种优秀的软件设计思想，是相对于面向过程、面向切面等设计思想的一种软件设计理念。它的核心思想是运用更加贴近人类思维的方式去设计软件，将软件中的各个组件抽象成相应的类，再将这些类组装成我们所需的软件系统。这里举个例子，假如用面向对象的方式设计一个电脑，我们会设计CPU类、硬盘类、显示器类、内存类等等，然后将这些类组合在一起设计成">
+<meta name="keywords" content="Java基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈谈面向对象的基础知识">
+<meta property="og:url" content="http://yoursite.com/2019/03/18/谈谈面向对象的基础知识/index.html">
+<meta property="og:site_name" content="写代码的木公">
+<meta property="og:description" content="本篇文章记录下面向对象的概念知识。  1. 什么是面向对象面向对象是一种优秀的软件设计思想，是相对于面向过程、面向切面等设计思想的一种软件设计理念。它的核心思想是运用更加贴近人类思维的方式去设计软件，将软件中的各个组件抽象成相应的类，再将这些类组装成我们所需的软件系统。这里举个例子，假如用面向对象的方式设计一个电脑，我们会设计CPU类、硬盘类、显示器类、内存类等等，然后将这些类组合在一起设计成">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/2019/03/javaBase/string_method.jpg">
+<meta property="og:image" content="http://yoursite.com/images/2019/03/javaBase/stringBuilder.jpg">
+<meta property="og:updated_time" content="2019-03-18T15:10:19.379Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="谈谈面向对象的基础知识">
+<meta name="twitter:description" content="本篇文章记录下面向对象的概念知识。  1. 什么是面向对象面向对象是一种优秀的软件设计思想，是相对于面向过程、面向切面等设计思想的一种软件设计理念。它的核心思想是运用更加贴近人类思维的方式去设计软件，将软件中的各个组件抽象成相应的类，再将这些类组装成我们所需的软件系统。这里举个例子，假如用面向对象的方式设计一个电脑，我们会设计CPU类、硬盘类、显示器类、内存类等等，然后将这些类组合在一起设计成">
+<meta name="twitter:image" content="http://yoursite.com/images/2019/03/javaBase/string_method.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="写代码的木公" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--<link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">-->
+    <!--<script src="/libs/bootstrap/js/bootstrap.js"></script>-->
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">写代码的木公</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">陈松夏</h2>
+            <h3 id="title">Java开发工程师</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+            <a id="follow" target="_blank" href="https://github.com/chensongxia/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                10
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                8
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-谈谈面向对象的基础知识" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            谈谈面向对象的基础知识
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        <!---->
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/03/18/谈谈面向对象的基础知识/">
+            <time datetime="2019-03-18T15:04:14.000Z" itemprop="datePublished">2019-03-18</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+        <i class="fa fa-user"></i>
+        陈松夏
+    </div>
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Java基础/">Java基础</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java基础/">Java基础</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <hr>
+<hr>
+<p>本篇文章记录下面向对象的概念知识。</p>
+<hr>
+<h3 id="1-什么是面向对象"><a href="#1-什么是面向对象" class="headerlink" title="1. 什么是面向对象"></a>1. 什么是面向对象</h3><p>面向对象是一种优秀的软件设计思想，是相对于<strong>面向过程、面向切面</strong>等设计思想的一种软件设计理念。它的核心思想是运用更加贴近人类思维的方式去设计软件，将软件中的各个组件抽象成相应的类，再将这些类组装成我们所需的软件系统。这里举个例子，假如用面向对象的方式设计一个电脑，我们会设计CPU类、硬盘类、显示器类、内存类等等，然后将这些类组合在一起设计成Computer类。</p>
+<h3 id="2-三大基本特征和五项基本原则"><a href="#2-三大基本特征和五项基本原则" class="headerlink" title="2. 三大基本特征和五项基本原则"></a>2. 三大基本特征和五项基本原则</h3><p>面向对象的三个基本特征是：<strong>封装、继承和多态</strong>。正是基于这些特征，面向对象的开发语言才能拥有更好的可重用性、扩展性和维护性。</p>
+<ul>
+<li>封装：将对象的实现细节隐藏起来，然后通过一些公共的方法向外部提供该对象的功能；</li>
+<li>继承：继承是软件复用的一种重要手段，子类继承父类之后将直接获得父类的属性和方法；</li>
+<li>多态：对象可以赋给父类对象和接口，但是运行时依然表现出子类或实现类的特征。</li>
+</ul>
+<a id="more"></a>
+<p>面向对象的<a href="https://www.cnblogs.com/fzz9/p/8973315.html" target="_blank" rel="noopener">五大原则</a>如下：</p>
+<ul>
+<li>单一职责原则：一个类专注于实现一个功能；</li>
+<li>开闭原则：对象或实体应该对扩展开放，对修改封闭；</li>
+<li>里氏替换原则（LSP）</li>
+<li>依赖倒置原则（DIP）</li>
+<li>接口隔离原则（ISP）</li>
+</ul>
+<h2 id="3-Java的平台无关性"><a href="#3-Java的平台无关性" class="headerlink" title="3. Java的平台无关性"></a>3. Java的平台无关性</h2><p>Java语言能跨平台的关键是JVM能跨平台。JVM还支持的语言有Kotlin、Groovy、JRuby、Jython、Scala等。</p>
+<h2 id="4-值传递和引用传递"><a href="#4-值传递和引用传递" class="headerlink" title="4. 值传递和引用传递"></a>4. 值传递和引用传递</h2><p>基本数据类型，保存的是数据本身的值，按值传递；引用类型的变量保存的是对象在内存中的地址，按引用传递。</p>
+<h2 id="5-方法重载和重写"><a href="#5-方法重载和重写" class="headerlink" title="5. 方法重载和重写"></a>5. 方法重载和重写</h2><p><strong>方法重载</strong>是指在同一个类中存在多个方法名相同，但是方法参数不用的方法;</p>
+<p><strong>方法重写</strong>是指子类继承父类后，重新修改了父类的某个方法的行为(子类中存在这样一个方法，这个方法的方法名方法参数都和父类中某个方法一样，但是这个两个方法的方法体不一样，这种情况我们称子类方法重写了父类方法)</p>
+<h3 id="6-基本数据类型"><a href="#6-基本数据类型" class="headerlink" title="6. 基本数据类型"></a>6. 基本数据类型</h3><p>Java中有8种基本数字类型。从大类上分的话分别是布尔型，字符型，整形和浮点型。对应bool，byte，char，short，int，long，float和double类型。</p>
+<ul>
+<li>byte：一个字节，8个bit位，-2^7 ～ 2^7-1</li>
+<li>char : 2个字节，16个bit位，0 ~ 2^16-1 ;</li>
+<li>short：2个字节，16个bit位，-2^15 ～ 2^15-1</li>
+<li>int：4个字节，32个bit位，-2^31 ～  2^31-1</li>
+<li>long：8个字节，64个bit位，-2^63 ～ 2^63-1</li>
+<li>float：4个字节，32个bit位</li>
+<li>double：8个字节，64个bit位。</li>
+</ul>
+<p><strong>在计算机中，浮点数用来近似表示任意某个实数</strong>。浮点数分为双精度浮点数和单精度浮点数。单精度占4个字节，双精度占8个字节，表示的范围更大。在要求精确计算的场合，不建议使用浮点型数据。因为浮点数计算的结果不是很精确，是近似的结果。这种情况应该使用BigDecimal。</p>
+<h3 id="7-包装类型"><a href="#7-包装类型" class="headerlink" title="7. 包装类型"></a>7. 包装类型</h3><p>包装类型是相对于基本数据类型来讲的。Java中有8种基本数据类型，每个基本数据类型都有相对的包装类型。比如int的包装类型是Integer。包装类型是引用类型，而且都是不可变累。</p>
+<ul>
+<li><strong>自动装箱</strong>：将基本数据类型赋值给包装类型的过程，实现原理是编译器层面new了一个包装类再赋值给相应的变量；</li>
+<li><strong>自动拆箱</strong>：包装类型直接赋值给基本数据类型，实现原理类似。</li>
+</ul>
+<p>比较有趣的是，包装类型在加载的过程中都会缓存某些值的类。比如Integer会缓存-128到127的类。当然其他包装类型也有类似的行为，具体情况可以自己查阅源代码。</p>
+<h3 id="8-String类"><a href="#8-String类" class="headerlink" title="8. String类"></a>8. String类</h3><p>String是我们开发过程中使用的最多的一个类。它是一个不可变类，不能被继承。String类常用的方法如下：</p>
+<p><img src="/images/2019/03/javaBase/string_method.jpg" alt="String常用方法"></p>
+<h4 id="8-1-subString方法的原理"><a href="#8-1-subString方法的原理" class="headerlink" title="8.1 subString方法的原理"></a>8.1 subString方法的原理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">Comparable</span>&lt;<span class="title">String</span>&gt;, <span class="title">CharSequence</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">char</span> value[];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Cache the hash code for the string */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> hash; <span class="comment">// Default to 0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/** use serialVersionUID from JDK 1.0.2 for interoperability */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">6849794470754667710L</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>String的类别是用char数组实现的，从代码中可以看到char数组用final修饰了，所以是不可变的。调用String的subString方法其实是又重新new了一个新的String对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">substring</span><span class="params">(<span class="keyword">int</span> beginIndex, <span class="keyword">int</span> endIndex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (beginIndex &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> StringIndexOutOfBoundsException(beginIndex);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (endIndex &gt; value.length) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> StringIndexOutOfBoundsException(endIndex);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> subLen = endIndex - beginIndex;</span><br><span class="line">    <span class="keyword">if</span> (subLen &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> StringIndexOutOfBoundsException(subLen);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ((beginIndex == <span class="number">0</span>) &amp;&amp; (endIndex == value.length)) ? <span class="keyword">this</span></span><br><span class="line">            : <span class="keyword">new</span> String(value, beginIndex, subLen);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="8-2-repalce函数"><a href="#8-2-repalce函数" class="headerlink" title="8.2 repalce函数"></a>8.2 repalce函数</h4><ul>
+<li>replace(char oldChar, char newChar)：使用newChar替换所有的oldChar，不是基于正则表达式的；</li>
+<li>replace(CharSequence target, CharSequence replacement)：替换所有，基于正则表达式的；</li>
+<li>public String replaceFirst(String regex, String replacement)：替换regex匹配的第一个字符串，基于正则表达式；</li>
+<li>replaceAll(String regex, String replacement)：替换regex匹配的所有字符串，基于正则表达式；</li>
+</ul>
+<h4 id="8-3-valueOf函数"><a href="#8-3-valueOf函数" class="headerlink" title="8.3 valueOf函数"></a>8.3 valueOf函数</h4><p>String提供了很多valueOf函数，比如valueOf（int i）、valueOf（double i）等。其实背后调用的是对应包装类的toSting方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Integer.toString(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Integer的toString方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toString</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i == Integer.MIN_VALUE)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"-2147483648"</span>;</span><br><span class="line">    <span class="keyword">int</span> size = (i &lt; <span class="number">0</span>) ? stringSize(-i) + <span class="number">1</span> : stringSize(i);</span><br><span class="line">    <span class="keyword">char</span>[] buf = <span class="keyword">new</span> <span class="keyword">char</span>[size];</span><br><span class="line">    getChars(i, size, buf);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> String(buf, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="8-3-常量池"><a href="#8-3-常量池" class="headerlink" title="8.3 常量池"></a>8.3 常量池</h4><p>常量池可以分为Class常量池和运行时常量池。</p>
+<p><strong>Class常量池（也叫静态常量池）</strong>，Class常量池不仅仅包含字符串(数字)字面量，还包含类、方法的信息，占用class文件绝大部分空间。这种常量池主要用于存放两大类常量：字面量(Literal)和符号引用量(Symbolic References)，字面量相当于Java语言层面常量的概念，如文本字符串，声明为final的常量值等，符号引用则属于编译原理方面的概念，包括了如下三种类型的常量：</p>
+<ul>
+<li>类和接口的全限定名</li>
+<li>字段名称和描述符</li>
+<li>方法名称和描述符</li>
+</ul>
+<p><strong>运行时常量池</strong>，则是jvm虚拟机在完成类装载操作后，将class文件中的常量池载入到内存中，并保存在方法区中，<strong>我们常说的常量池，就是指方法区中的运行时常量池</strong>。</p>
+<p>程序运行时，除非手动向常量池中添加常量(比如调用intern方法)，否则jvm不会自动添加常量到常量池。</p>
+<h4 id="8-4-intren方法"><a href="#8-4-intren方法" class="headerlink" title="8.4 intren方法"></a>8.4 intren方法</h4><p>intren方法的作用是检测量量池中是否有当前字符串，有的话就返回常量池中的对像，没有的话就将当前对像放入常量池</p>
+<h4 id="8-5-兄弟类之间的比较"><a href="#8-5-兄弟类之间的比较" class="headerlink" title="8.5 兄弟类之间的比较"></a>8.5 兄弟类之间的比较</h4><p><img src="/images/2019/03/javaBase/stringBuilder.jpg" alt="952a42dae27d854aae6971549cde46af.jpeg"></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2019/03/18/谈谈面向对象的基础知识/" data-id="cjtehhi53000bb03durqejdll" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/03/18/谈谈枚举/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">谈谈枚举</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Chrome/" style="font-size: 15px; color: #32cd14">Chrome</a> <a href="/tags/Collection/" style="font-size: 16.67px; color: #32cd14">Collection</a> <a href="/tags/IDEA/" style="font-size: 15px; color: #32cd14">IDEA</a> <a href="/tags/Java基础/" style="font-size: 20px; color: #32cd14">Java基础</a> <a href="/tags/Maven/" style="font-size: 15px; color: #32cd14">Maven</a> <a href="/tags/个人成长/" style="font-size: 15px; color: #32cd14">个人成长</a> <a href="/tags/工具/" style="font-size: 18.33px; color: #32cd14">工具</a> <a href="/tags/年度计划/" style="font-size: 15px; color: #32cd14">年度计划</a>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2019 songxia<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
