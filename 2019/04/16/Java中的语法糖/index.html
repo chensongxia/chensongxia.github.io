@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Java中的语法糖 | 写代码的木公</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="也称糖衣语法，指在计算机语言中添加的某种语法，这种语法对语言本身功能来说没有什么影响，只是为了方便程序员的开发，提高开发效率。说白了，语法糖就是对现有语法的一个封装。  Java中的语法糖 switch支持String和枚举 泛型 自动装箱与拆箱 方法变长参数 枚举 内部类 条件编译 断言 数值字面量 for-each try-with-resource Lambda表达式 字符串+号。">
+<meta name="keywords" content="Java基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中的语法糖">
+<meta property="og:url" content="http://yoursite.com/2019/04/16/Java中的语法糖/index.html">
+<meta property="og:site_name" content="写代码的木公">
+<meta property="og:description" content="也称糖衣语法，指在计算机语言中添加的某种语法，这种语法对语言本身功能来说没有什么影响，只是为了方便程序员的开发，提高开发效率。说白了，语法糖就是对现有语法的一个封装。  Java中的语法糖 switch支持String和枚举 泛型 自动装箱与拆箱 方法变长参数 枚举 内部类 条件编译 断言 数值字面量 for-each try-with-resource Lambda表达式 字符串+号。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-16T13:53:40.272Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java中的语法糖">
+<meta name="twitter:description" content="也称糖衣语法，指在计算机语言中添加的某种语法，这种语法对语言本身功能来说没有什么影响，只是为了方便程序员的开发，提高开发效率。说白了，语法糖就是对现有语法的一个封装。  Java中的语法糖 switch支持String和枚举 泛型 自动装箱与拆箱 方法变长参数 枚举 内部类 条件编译 断言 数值字面量 for-each try-with-resource Lambda表达式 字符串+号。">
+    
+
+    
+        <link rel="alternate" href="/" title="写代码的木公" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--<link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">-->
+    <!--<script src="/libs/bootstrap/js/bootstrap.js"></script>-->
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">写代码的木公</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile" class="profile-fixed">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">陈松夏</h2>
+            <h3 id="title">Java开发工程师</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+            <a id="follow" target="_blank" href="https://github.com/chensongxia/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                13
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                11
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-Java中的语法糖" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Java中的语法糖
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        <!---->
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/04/16/Java中的语法糖/">
+            <time datetime="2019-04-16T13:51:44.000Z" itemprop="datePublished">2019-04-16</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+        <i class="fa fa-user"></i>
+        陈松夏
+    </div>
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Java基础/">Java基础</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Java基础/">Java基础</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <hr>
+<p>也称糖衣语法，指在计算机语言中添加的某种语法，这种语法对语言本身功能来说没有什么影响，只是为了方便程序员的开发，提高开发效率。说白了，语法糖就是对现有语法的一个封装。</p>
+<hr>
+<h3 id="Java中的语法糖"><a href="#Java中的语法糖" class="headerlink" title="Java中的语法糖"></a>Java中的语法糖</h3><ul>
+<li>switch支持String和枚举</li>
+<li>泛型</li>
+<li>自动装箱与拆箱</li>
+<li>方法变长参数</li>
+<li>枚举</li>
+<li>内部类</li>
+<li>条件编译</li>
+<li>断言</li>
+<li>数值字面量</li>
+<li>for-each</li>
+<li>try-with-resource</li>
+<li>Lambda表达式</li>
+<li>字符串+号。</li>
+</ul>
+<a id="more"></a>
+<h3 id="switch对String和枚举类的支持"><a href="#switch对String和枚举类的支持" class="headerlink" title="switch对String和枚举类的支持"></a>switch对String和枚举类的支持</h3><p>switch对枚举和String的支持原理其实差不多。switch原生支持只能支持比较整数类型。如果switch后面是String类型的话，编译器会将其转换成String的hashCode的值，所以其实比较的是String的hashCode值。如果switch后面是Enum的话，编译器会将其转换为这个枚举定义的下标（ordinal）。其实最后都是比较的整数类型。下面以Stirng举个列子。</p>
+<p>源代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">switchDemoString</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">"world"</span>;</span><br><span class="line">        <span class="keyword">switch</span> (str) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"hello"</span>:</span><br><span class="line">                System.out.println(<span class="string">"hello"</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"world"</span>:</span><br><span class="line">                System.out.println(<span class="string">"world"</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>反编译后的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">switchDemoString</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">switchDemoString</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String str = <span class="string">"world"</span>;</span><br><span class="line">        String s;</span><br><span class="line">        <span class="keyword">switch</span>((s = str).hashCode())</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">99162322</span>:</span><br><span class="line">            <span class="keyword">if</span>(s.equals(<span class="string">"hello"</span>))</span><br><span class="line">                System.out.println(<span class="string">"hello"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">113318802</span>:</span><br><span class="line">            <span class="keyword">if</span>(s.equals(<span class="string">"world"</span>))</span><br><span class="line">                System.out.println(<span class="string">"world"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="对泛型的支持"><a href="#对泛型的支持" class="headerlink" title="对泛型的支持"></a>对泛型的支持</h3><p>在JDK1.5中，Java语言引入了泛型机制。但是这种泛型机制是通过类型擦除来实现的，即Java中的泛型只在程序源代码中有效（源代码阶段提供类型检查），在编译后的字节码中自动用强制类型转换进行替代。也就是说，Java语言中的泛型机制其实就是一颗语法糖，相较与C++、C#相比，其泛型实现实在是不那么优雅。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 在源代码中存在泛型</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;String,String&gt;();</span><br><span class="line">    map.put(<span class="string">"hello"</span>,<span class="string">"你好"</span>);</span><br><span class="line">    String hello = map.get(<span class="string">"hello"</span>);</span><br><span class="line">    System.out.println(hello);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    HashMap map = <span class="keyword">new</span> HashMap(); <span class="comment">//类型擦除</span></span><br><span class="line">    map.put(<span class="string">"hello"</span>, <span class="string">"你好"</span>);</span><br><span class="line">    String hello = (String)map.get(<span class="string">"hello"</span>);<span class="comment">//强制转换</span></span><br><span class="line">    System.out.println(hello);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="包装类型的自动装箱和拆箱"><a href="#包装类型的自动装箱和拆箱" class="headerlink" title="包装类型的自动装箱和拆箱"></a>包装类型的自动装箱和拆箱</h3><p>我们知道在Java中的8个基本类型和对应的包装类型之间是可以互相赋值的（这个过程叫装箱、拆箱过程）。其实这背后的原理是编译器做了优化。如下面代码，将基本类型赋值给包装类其实是调用了包装类的valueOf()方法创建了一个包装类再赋值给了基本类型。而包装类赋值给基本类型就是调用了包装类的xxxValue（）方法拿到基本数据类型再赋值的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Integer a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> c = a + b;</span><br><span class="line">    System.out.println(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Integer a = Integer.valueOf(<span class="number">1</span>); <span class="comment">// 自动装箱</span></span><br><span class="line">    <span class="keyword">byte</span> b = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> c = a.intValue() + b;<span class="comment">//自动拆箱</span></span><br><span class="line">    System.out.println(c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="变长方法参数"><a href="#变长方法参数" class="headerlink" title="变长方法参数"></a>变长方法参数</h3><p>变长参数特性是在JDK1.5中引入的，使用变长参数有两个条件，一是变长的那一部分参数具有相同的类型，二是变长参数必须位于方法参数列表的最后面。变长参数同样是Java中的语法糖，<strong>其内部实现是编译器在编译源代码的时候将变长参数部分转换成了Java数组。</strong></p>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>java中类的定义使用class，枚举类的定义使用enum。在Java的字节码结构中，其实并没有枚举类型，枚举类型只是一个语法糖，在编译完成后被编译成一个普通的类，也是用Class修饰。这个类继承java.lang.Enum，并被final关键字修饰。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Fruit &#123;</span><br><span class="line">    APPLE,ORINGE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将Fruit的class文件进行反编译<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//继承java.lang.Enum并声明为final</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> <span class="keyword">extends</span> <span class="title">Enum</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Fruit[] values()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> (Fruit[])$VALUES.clone();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Fruit <span class="title">valueOf</span><span class="params">(String s)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (Fruit)Enum.valueOf(Fruit, s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Fruit</span><span class="params">(String s, <span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(s, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//枚举类型常量</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Fruit APPLE;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Fruit ORANGE;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Fruit $VALUES[];<span class="comment">//使用数组进行维护</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span></span><br><span class="line">    &#123;</span><br><span class="line">        APPLE = <span class="keyword">new</span> Fruit(<span class="string">"APPLE"</span>, <span class="number">0</span>);</span><br><span class="line">        ORANGE = <span class="keyword">new</span> Fruit(<span class="string">"ORANGE"</span>, <span class="number">1</span>);</span><br><span class="line">        $VALUES = (<span class="keyword">new</span> Fruit[] &#123;</span><br><span class="line">            APPLE, ORANGE</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><p>Java语言中之所以引入内部类，是因为有些时候一个类只在另一个类中有用，我们不想让其在另外一个地方被使用。内部类之所以是语法糖，是因为其只是一个编译时的概念，一旦编译完成，编译器就会为内部类生成一个单独的class文件，名为outer$innter.class。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用javac编译后，生成两个class文件Outer.class和Outer$Inner.class，其中Outer$Inner.class的内容如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span>$<span class="title">Inner</span> </span>&#123;</span><br><span class="line">    Outer$Inner(Outer var1) &#123;</span><br><span class="line">        <span class="keyword">this</span>.<span class="keyword">this</span>$<span class="number">0</span> = var1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h3><p>一般情况下，源程序中所有的行都参加编译。但有时希望对其中一部分内容只在满足一定条件下才进行编译，即对一部分内容指定编译条件，这就是“条件编译”（conditional compile）。</p>
+<p>Java中的条件编译是通过编译器的优化原则实现的：</p>
+<ul>
+<li>如果if的条件是false，则在编译时忽略这个if语句。</li>
+<li>忽略未使用的变量。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConditionalCompilation02</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(CompilationConfig.DEBUG_MODE)</span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">"[DEBUG MODE]You can print sth"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">"[RELEASE MODE]You can print sth"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><p>??</p>
+<h3 id="数值字面量"><a href="#数值字面量" class="headerlink" title="数值字面量"></a>数值字面量</h3><p>Java中支持如下形式的数值字面量</p>
+<ul>
+<li>十进制：默认的</li>
+<li>八进制：整数之前加数字0来表示</li>
+<li>十六进制：整数之前加”0x”或”0X”</li>
+<li>二进制（新加的）：整数之前加”0b”或”0B”</li>
+</ul>
+<p>另外在在jdk7中，数值字面量，不管是整数还是浮点数，都允许在数字之间插入任意多个下划线。这些下划线不会对字面量的数值产生影响，目的就是方便阅读。比如： </p>
+<ul>
+<li>1_500_000 </li>
+<li>5_6.3_4 </li>
+<li>89_3___1</li>
+</ul>
+<p>下划线只能出现在数字中间，前后必须是数字。所以“_100”、“0b_101“是不合法的，无法通过编译。这样限制的动机就是可以降低实现的复杂度。有了这个限制，Java编译器只需在扫描源代码的时候将所发现的数字中间的下划线直接删除就可以了。如果不添加这个限制，编译器需要进行语法分析才能做出判断。比如：_100,可能是一个整数字面量100，也可能是一个变量名称。这就要求编译器的实现做出更复杂的改动。</p>
+<h3 id="for-each"><a href="#for-each" class="headerlink" title="for-each"></a>for-each</h3><p>增强for循环的对象要么是一个数组，要么实现了Iterable接口。这个语法糖主要用来对数组或者集合进行遍历，其在循环过程中不能改变集合的大小。增强for循环主要使代码更加简洁，其背后的原理是编译器将增强for循环转换成了普通的for循环。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String[] params = <span class="keyword">new</span> String[]&#123;<span class="string">"hello"</span>,<span class="string">"world"</span>&#125;;</span><br><span class="line">    <span class="comment">//增强for循环对象为数组</span></span><br><span class="line">    <span class="keyword">for</span>(String str : params)&#123;</span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    List&lt;String&gt; lists = Arrays.asList(<span class="string">"hello"</span>,<span class="string">"world"</span>);</span><br><span class="line">    <span class="comment">//增强for循环对象实现Iterable接口</span></span><br><span class="line">    <span class="keyword">for</span>(String str : lists)&#123;</span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译器编译后的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   String[] params = <span class="keyword">new</span> String[]&#123;<span class="string">"hello"</span>, <span class="string">"world"</span>&#125;;</span><br><span class="line">   String[] lists = params;</span><br><span class="line">   <span class="keyword">int</span> var3 = params.length;</span><br><span class="line">   <span class="comment">//数组形式的增强for退化为普通for</span></span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> str = <span class="number">0</span>; str &lt; var3; ++str) &#123;</span><br><span class="line">       String str1 = lists[str];</span><br><span class="line">       System.out.println(str1);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   List var6 = Arrays.asList(<span class="keyword">new</span> String[]&#123;<span class="string">"hello"</span>, <span class="string">"world"</span>&#125;);</span><br><span class="line">   Iterator var7 = var6.iterator();</span><br><span class="line">   <span class="comment">//实现Iterable接口的增强for使用iterator接口进行遍历</span></span><br><span class="line">   <span class="keyword">while</span>(var7.hasNext()) &#123;</span><br><span class="line">       String var8 = (String)var7.next();</span><br><span class="line">       System.out.println(var8);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="try-with-resource"><a href="#try-with-resource" class="headerlink" title="try-with-resource"></a>try-with-resource</h3><p>当一个外部资源的句柄对象实现了AutoCloseable接口，JDK7中便可以利用try-with-resource语法更优雅的关闭资源，消除板式代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"test"</span>))) &#123;</span><br><span class="line">        System.out.println(inputStream.read());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e.getMessage(), e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将外部资源的句柄对象的创建放在try关键字后面的括号中，当这个try-catch代码块执行完毕后，Java会确保外部资源的close方法被调用。代码是不是瞬间简洁许多！try-with-resource并不是JVM虚拟机的新增功能，只是JDK实现了一个语法糖，当你将上面代码反编译后会发现，其实对JVM虚拟机而言，它看到的依然是之前的写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        FileInputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"test"</span>));</span><br><span class="line">        Throwable var2 = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(inputStream.read());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var12) &#123;</span><br><span class="line">            var2 = var12;</span><br><span class="line">            <span class="keyword">throw</span> var12;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (inputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (var2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        inputStream.close();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Throwable var11) &#123;</span><br><span class="line">                        var2.addSuppressed(var11);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    inputStream.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException var14) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(var14.getMessage(), var14);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><p>Lambda表达式虽然看着很先进，但其实Lambda表达式的本质只是一个”语法糖”,<strong>由编译器推断并帮你转换包装为常规的代码</strong>,因此你可以使用更少的代码来实现同样的功能。<strong>本人建议不要乱用,因为这就和某些很高级的黑客写的代码一样,简洁,难懂,难以调试,维护人员想骂娘</strong>。</p>
+<p>lambda表达式允许你通过表达式来代替功能接口。Lambda表达式还增强了集合库。 Java SE 8添加了2个对集合数据进行批量操作的包: java.util.function 包以及java.util.stream 包。 流(stream)就如同迭代器(iterator),但附加了许多额外的功能。 总的来说,lambda表达式和 stream 是自Java语言添加泛型(Generics)和注解(annotation)以来最大的变化。</p>
+<h4 id="Lambda表达式的语法"><a href="#Lambda表达式的语法" class="headerlink" title="Lambda表达式的语法"></a>Lambda表达式的语法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">基本语法:</span><br><span class="line">(parameters) -&gt; expression</span><br><span class="line">或</span><br><span class="line">(parameters) -&gt;&#123; statements; &#125;</span><br></pre></td></tr></table></figure>
+<p>Lambda表达式的一些简单列子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 不需要参数,返回值为 5  </span></span><br><span class="line">() -&gt; <span class="number">5</span>  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 2. 接收一个参数(数字类型),返回其2倍的值  </span></span><br><span class="line">x -&gt; <span class="number">2</span> * x  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 3. 接受2个参数(数字),并返回他们的差值  </span></span><br><span class="line">(x, y) -&gt; x – y  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 4. 接收2个int型整数,返回他们的和  </span></span><br><span class="line">(<span class="keyword">int</span> x, <span class="keyword">int</span> y) -&gt; x + y  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// 5. 接受一个 string 对象,并在控制台打印,不返回任何值(看起来像是返回void)  </span></span><br><span class="line">(String s) -&gt; System.out.print(s)</span><br></pre></td></tr></table></figure>
+<h4 id="基本的Lambda例子-实现功能接口"><a href="#基本的Lambda例子-实现功能接口" class="headerlink" title="基本的Lambda例子(实现功能接口)"></a>基本的Lambda例子(实现功能接口)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">String[] atp = &#123;<span class="string">"Rafael Nadal"</span>, <span class="string">"Novak Djokovic"</span>,</span><br><span class="line">                <span class="string">"Stanislas Wawrinka"</span>,</span><br><span class="line">                <span class="string">"David Ferrer"</span>, <span class="string">"Roger Federer"</span>,</span><br><span class="line">                <span class="string">"Andy Murray"</span>, <span class="string">"Tomas Berdych"</span>,</span><br><span class="line">                <span class="string">"Juan Martin Del Potro"</span>&#125;;</span><br><span class="line"></span><br><span class="line">        List&lt;String&gt; players =  Arrays.asList(atp);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//实现功能接口</span></span><br><span class="line">        players.forEach((String player) -&gt;&#123;</span><br><span class="line">            System.out.println(player);</span><br><span class="line">        &#125;);</span><br><span class="line">        Runnable runnable = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"l am a new thread..."</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">new</span> Thread(runnable).start();</span><br></pre></td></tr></table></figure>
+<h4 id="使用Lambdas排序集合"><a href="#使用Lambdas排序集合" class="headerlink" title="使用Lambdas排序集合"></a>使用Lambdas排序集合</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">players.sort(<span class="keyword">new</span> Comparator&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String o1, String o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> o1.compareTo(o2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">Comparator&lt;String&gt; comparator = (String o1,String o2) -&gt;&#123;<span class="keyword">return</span> o1.compareTo(o2);&#125;;</span><br><span class="line">players.sort(comparator);</span><br></pre></td></tr></table></figure>
+<h4 id="使用Lambdas和Streams"><a href="#使用Lambdas和Streams" class="headerlink" title="使用Lambdas和Streams"></a>使用Lambdas和Streams</h4><p>Stream是对集合的包装,通常和lambda一起使用。 使用lambdas可以支持许多操作,如 map, filter, limit, sorted, count, min, max, sum, collect 等等。 同样,Stream使用懒运算,他们并不会真正地读取所有数据,遇到像getFirst() 这样的方法就会结束链式语法。</p>
+<h3 id="字符串对-号的支持"><a href="#字符串对-号的支持" class="headerlink" title="字符串对+号的支持"></a>字符串对+号的支持</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s=<span class="keyword">null</span>;</span><br><span class="line">s=s+<span class="string">"abc"</span>;</span><br><span class="line">System.out.println(s);</span><br></pre></td></tr></table></figure>
+<p>上面的代码输出？</p>
+<p>字符串拼接原理：运行时，两个字符串str1, str2的拼接首先会调用 String.valueOf(obj)，这个Obj为str1，而String.valueOf(Obj)中的实现是return obj == null ? “null” : obj.toString(), 然后产生StringBuilder， 调用的StringBuilder(str1)构造方法， 把StringBuilder初始化，长度为str1.length()+16，并且调用append(str1)！ 接下来调用StringBuilder.append(str2), 把第二个字符串拼接进去， 然后调用StringBuilder.toString返回结果！</p>
+<p>所以答案是:StringBuilder(“null”).append(“abc”).toString(); //nullabc</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.cnblogs.com/wanshiming/p/7685684.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanshiming/p/7685684.html</a><br><a href="https://www.cnblogs.com/franson-2016/p/5593080.html" target="_blank" rel="noopener">https://www.cnblogs.com/franson-2016/p/5593080.html</a><br><a href="https://www.jb51.net/article/138519.htm" target="_blank" rel="noopener">https://www.jb51.net/article/138519.htm</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2019/04/16/Java中的语法糖/" data-id="cjujuoyxt0007h43dqi92xxkx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/04/16/Spring中的各种Condition注解/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Spring中的各种Condition注解
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2019/04/01/怎样快速接手一个项目/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">怎样快速接手一个项目</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java基础/">Java基础</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spring/">Spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作经验/">工作经验</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Chrome/" style="font-size: 15px; color: #32cd14">Chrome</a> <a href="/tags/Collection/" style="font-size: 16.67px; color: #32cd14">Collection</a> <a href="/tags/IDEA/" style="font-size: 15px; color: #32cd14">IDEA</a> <a href="/tags/Java基础/" style="font-size: 20px; color: #32cd14">Java基础</a> <a href="/tags/Maven/" style="font-size: 15px; color: #32cd14">Maven</a> <a href="/tags/Spring/" style="font-size: 15px; color: #32cd14">Spring</a> <a href="/tags/Spring-Boot/" style="font-size: 15px; color: #32cd14">Spring Boot</a> <a href="/tags/个人成长/" style="font-size: 15px; color: #32cd14">个人成长</a> <a href="/tags/工作经验/" style="font-size: 15px; color: #32cd14">工作经验</a> <a href="/tags/工具/" style="font-size: 18.33px; color: #32cd14">工具</a> <a href="/tags/年度计划/" style="font-size: 15px; color: #32cd14">年度计划</a>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2019 songxia<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
